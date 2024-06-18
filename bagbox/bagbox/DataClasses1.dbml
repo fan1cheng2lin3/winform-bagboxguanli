@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BoxbagManageSystem" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=BoxbagManageSystem;Integrated Security=True" SettingsObjectName="bagbox.Properties.Settings" SettingsPropertyName="BoxbagManageSystemConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CartItem" Member="CartItem">
+    <Type Name="CartItem">
+      <Column Name="Product_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Customerld" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Proid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ListPrice" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Unprice" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product_Table" Member="Product_Table">
+    <Type Name="Product_Table">
+      <Column Name="Goods_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Goods_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Classification_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Supplier_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Unit_Price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Order_Quantity" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Stock_Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="image" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{31B9C791-98BA-4038-A17D-F03BF873829D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>bagbox</RootNamespace>
+    <AssemblyName>bagbox</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BoxbagManageSystemDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoxbagManageSystemDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BoxbagManageSystemDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoxbagManageSystemDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BoxbagManageSystemDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoxbagManageSystemDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BoxbagManageSystemDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoxbagManageSystemDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BoxbagManageSystemDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoxbagManageSystemDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BoxbagManageSystemDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoxbagManageSystemDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BoxbagManageSystemDataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoxbagManageSystemDataSet6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CartItemsv.cs" />
+    <Compile Include="Check_Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Check_Order.Designer.cs">
+      <DependentUpon>Check_Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="DataClasses1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Select_Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Select_Order.Designer.cs">
+      <DependentUpon>Select_Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShopCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShopCart.Designer.cs">
+      <DependentUpon>ShopCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubCart.Designer.cs">
+      <DependentUpon>SubCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tproducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tproducts.Designer.cs">
+      <DependentUpon>Tproducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="商品管理\delete_product .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="商品管理\delete_product .Designer.cs">
+      <DependentUpon>delete_product .cs</DependentUpon>
+    </Compile>
+    <Compile Include="后端窗口\zhuye.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="后端窗口\zhuye.Designer.cs">
+      <DependentUpon>zhuye.cs</DependentUpon>
+    </Compile>
+    <Compile Include="主页\验证码修改密码\xinmima.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="主页\验证码修改密码\xinmima.Designer.cs">
+      <DependentUpon>xinmima.cs</DependentUpon>
+    </Compile>
+    <Compile Include="主页\验证码修改密码\yanzhengma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="主页\验证码修改密码\yanzhengma.Designer.cs">
+      <DependentUpon>yanzhengma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="主页\验证码修改密码\mimazhaohui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="主页\验证码修改密码\mimazhaohui.Designer.cs">
+      <DependentUpon>mimazhaohui.cs</DependentUpon>
+    </Compile>
+    <Compile Include="前端窗口\Front_zuxiao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="前端窗口\Front_zuxiao.Designer.cs">
+      <DependentUpon>Front_zuxiao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="后端窗口\Backend_xiugaimima.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="后端窗口\Backend_xiugaimima.Designer.cs">
+      <DependentUpon>Backend_xiugaimima.cs</DependentUpon>
+    </Compile>
+    <Compile Include="前端窗口\Front.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="前端窗口\Front.Designer.cs">
+      <DependentUpon>Front.cs</DependentUpon>
+    </Compile>
+    <Compile Include="商品管理\Insert_product.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="商品管理\Insert_product.Designer.cs">
+      <DependentUpon>Insert_product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="商品管理\Update_product.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="商品管理\Update_product.Designer.cs">
+      <DependentUpon>Update_product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="类文件\DB.cs" />
+    <Compile Include="主页\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="主页\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="主页\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="主页\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="类文件\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="主页\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="主页\Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="后端窗口\Backend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="后端窗口\Backend.Designer.cs">
+      <DependentUpon>Backend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="前端窗口\Front_xiugaimima.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="前端窗口\Front_xiugaimima.Designer.cs">
+      <DependentUpon>Front_xiugaimima.cs</DependentUpon>
+    </Compile>
+    <None Include="DataClasses1.dbml.layout">
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Check_Order.resx">
+      <DependentUpon>Check_Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Select_Order.resx">
+      <DependentUpon>Select_Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShopCart.resx">
+      <DependentUpon>ShopCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubCart.resx">
+      <DependentUpon>SubCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tproducts.resx">
+      <DependentUpon>Tproducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="商品管理\delete_product .resx">
+      <DependentUpon>delete_product .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="后端窗口\zhuye.resx">
+      <DependentUpon>zhuye.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="主页\验证码修改密码\xinmima.resx">
+      <DependentUpon>xinmima.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="主页\验证码修改密码\yanzhengma.resx">
+      <DependentUpon>yanzhengma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="前端窗口\Front_zuxiao.resx">
+      <DependentUpon>Front_zuxiao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="主页\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="主页\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="主页\验证码修改密码\mimazhaohui.resx">
+      <DependentUpon>mimazhaohui.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="主页\Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="前端窗口\Front.resx">
+      <DependentUpon>Front.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="后端窗口\Backend.resx">
+      <DependentUpon>Backend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="前端窗口\Front_xiugaimima.resx">
+      <DependentUpon>Front_xiugaimima.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="后端窗口\Backend_xiugaimima.resx">
+      <DependentUpon>Backend_xiugaimima.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="商品管理\Insert_product.resx">
+      <DependentUpon>Insert_product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="商品管理\Update_product.resx">
+      <DependentUpon>Update_product.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="BoxbagManageSystemDataSet.xsc">
+      <DependentUpon>BoxbagManageSystemDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoxbagManageSystemDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BoxbagManageSystemDataSet.xss">
+      <DependentUpon>BoxbagManageSystemDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet1.xsc">
+      <DependentUpon>BoxbagManageSystemDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoxbagManageSystemDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BoxbagManageSystemDataSet1.xss">
+      <DependentUpon>BoxbagManageSystemDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet2.xsc">
+      <DependentUpon>BoxbagManageSystemDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoxbagManageSystemDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BoxbagManageSystemDataSet2.xss">
+      <DependentUpon>BoxbagManageSystemDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet3.xsc">
+      <DependentUpon>BoxbagManageSystemDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoxbagManageSystemDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BoxbagManageSystemDataSet3.xss">
+      <DependentUpon>BoxbagManageSystemDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet4.xsc">
+      <DependentUpon>BoxbagManageSystemDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoxbagManageSystemDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BoxbagManageSystemDataSet4.xss">
+      <DependentUpon>BoxbagManageSystemDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet5.xsc">
+      <DependentUpon>BoxbagManageSystemDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoxbagManageSystemDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BoxbagManageSystemDataSet5.xss">
+      <DependentUpon>BoxbagManageSystemDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet6.xsc">
+      <DependentUpon>BoxbagManageSystemDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoxbagManageSystemDataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BoxbagManageSystemDataSet6.xss">
+      <DependentUpon>BoxbagManageSystemDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="DataClasses1.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
