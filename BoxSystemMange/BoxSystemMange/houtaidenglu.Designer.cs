@@ -74,6 +74,7 @@
             this.btnOk.TabIndex = 16;
             this.btnOk.Text = "登录";
             this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // txtPwd
             // 
@@ -126,13 +127,13 @@
             this.radioButton2.Checked = true;
             this.radioButton2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.radioButton2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.radioButton2.Location = new System.Drawing.Point(71, 45);
+            this.radioButton2.Location = new System.Drawing.Point(18, 45);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(72, 24);
+            this.radioButton2.Size = new System.Drawing.Size(156, 24);
             this.radioButton2.TabIndex = 1;
             this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "员工";
+            this.radioButton2.Text = "设计师和员工";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton3
@@ -140,7 +141,7 @@
             this.radioButton3.AutoSize = true;
             this.radioButton3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.radioButton3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.radioButton3.Location = new System.Drawing.Point(207, 45);
+            this.radioButton3.Location = new System.Drawing.Point(262, 45);
             this.radioButton3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(93, 24);
@@ -189,6 +190,7 @@
             this.Controls.Add(this.label2);
             this.Name = "houtaidenglu";
             this.Text = "houtaidenglu";
+            this.Load += new System.EventHandler(this.houtaidenglu_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

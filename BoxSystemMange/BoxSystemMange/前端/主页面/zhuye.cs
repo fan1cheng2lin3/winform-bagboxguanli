@@ -20,7 +20,7 @@ namespace BoxSystemMange
         private AutoAdaptWindowsSize autoAdaptWindowsSize;
         public Point originalAutoScrollMinSize;
         private bool button6ClickedOnce = false;
-
+        private int clickCount = 0;
 
 
         public zhuye()
@@ -69,9 +69,11 @@ namespace BoxSystemMange
                 return cp;
             }
         }
-
+       
         private void panelTop_MouseDown(object sender, MouseEventArgs e)
         {
+            
+
             mPoint = new Point(e.X, e.Y);
         }
 
@@ -424,7 +426,7 @@ namespace BoxSystemMange
                 zhuyepanel2.Visible = false;
                 if (!Tproducts.isTproductsClosed)
                 {
-                    panel8.Visible = true;
+                    panel11.Visible = true;
                 }
                 button6ClickedOnce = true;
             }
@@ -460,15 +462,34 @@ namespace BoxSystemMange
         }
 
 
+        public void denglu()
+        {
+            if (Login.iflogin == false)
+            {
+                panel11.Visible = true;
+            }
+            else
+            {
+                panel11.Visible = false;
+
+            }
+
+        }
+
 
         private void button13_Click(object sender, EventArgs e)
         {
+
             panel5.AutoScroll = false;
+            denglu();
             SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
             ShopCart t1 = new ShopCart();
             Zichuangti(t1);
 
-            
+
+
+
+
 
 
 
@@ -513,6 +534,7 @@ namespace BoxSystemMange
         private void button9_Click_1(object sender, EventArgs e)
         {
             panel5.AutoScroll = false;
+            denglu();
             dindan t1 = new dindan();
             Zichuangti(t1);
         }
@@ -526,6 +548,7 @@ namespace BoxSystemMange
         private void button10_Click(object sender, EventArgs e)
         {
             panel5.AutoScroll = false;
+            denglu();
             community t1 = new community();
             Zichuangti(t1);
         }
@@ -533,6 +556,7 @@ namespace BoxSystemMange
         private void button14_Click(object sender, EventArgs e)
         {
             panel5.AutoScroll = false;
+            denglu();
             information t1 = new information();
             Zichuangti(t1);
         }
@@ -605,7 +629,6 @@ namespace BoxSystemMange
         }
 
 
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             panel11.Visible = false;
@@ -617,22 +640,31 @@ namespace BoxSystemMange
             }
 
 
-            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
-            panel5.AutoScroll = false;
-
-            if (Login.iflogin == false)
+            if(zhuyepanel.Visible == false)
             {
-                Login t1 = new Login();
-                Zichuangti(t1);
-                t1.HidePanelHandler = new Login.HidePanelDelegate(jiaruSignup);
-                t1.HidePanebbb = new Login.HidePanel(hidepanel);
+                SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+                panel5.AutoScroll = false;
+
+                if (Login.iflogin == false)
+                {
+                    Login t1 = new Login();
+                    Zichuangti(t1);
+                    t1.HidePanelHandler = new Login.HidePanelDelegate(jiaruSignup);
+                    t1.HidePanebbb = new Login.HidePanel(hidepanel);
+                }
+                else
+                {
+                    gereninfo t2 = new gereninfo();
+                    Zichuangti(t2);
+
+                }
             }
             else
             {
-                gereninfo t2 = new gereninfo();
-                Zichuangti(t2);
-
+                zhuyepanel.Visible = false;
             }
+
+            
             
 
 
@@ -730,6 +762,7 @@ namespace BoxSystemMange
             {
                 //panel1.Visible = false;
 
+
             }
 
 
@@ -754,10 +787,51 @@ namespace BoxSystemMange
             panel11.Visible = false;
         }
 
+
+        public bool dengluqingkuang = false;
         private void label12_Click(object sender, EventArgs e)
         {
-            houtaidenglu t1 = new houtaidenglu();
+
+
+
+            clickCount++; // 每次点击时，点击次数加1
+
+            if (clickCount == 3)
+            {
+                this.Visible = false;
+                houtaidenglu t1 = new houtaidenglu();
+                t1.ShowDialog();
+
+                clickCount = 0;
+
+            }
+
+            
+
+            
+
+
+        }
+
+        private void zhuye_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+        }
+
+        private void zhuyepanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            houtaichuangti t1 = new houtaichuangti();
             t1.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoadDataFromDatabase4(flowLayoutPanel3, "优惠");
         }
     }
 }

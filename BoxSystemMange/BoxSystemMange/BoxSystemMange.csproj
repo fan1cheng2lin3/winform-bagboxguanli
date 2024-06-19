@@ -46,6 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoxbagManageSystemDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoxbagManageSystemDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BoxbagManageSystemDataSet11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoxbagManageSystemDataSet11.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BoxbagManageSystemDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoxbagManageSystemDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BoxbagManageSystemDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoxbagManageSystemDataSet3.xsd</DependentUpon>
+    </Compile>
     <Compile Include="community.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +84,12 @@
     </Compile>
     <Compile Include="gereninfo.Designer.cs">
       <DependentUpon>gereninfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="houtaichuangti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="houtaichuangti.Designer.cs">
+      <DependentUpon>houtaichuangti.cs</DependentUpon>
     </Compile>
     <Compile Include="houtaidenglu.cs">
       <SubType>Form</SubType>
@@ -119,6 +145,9 @@
     <EmbeddedResource Include="gereninfo.resx">
       <DependentUpon>gereninfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="houtaichuangti.resx">
+      <DependentUpon>houtaichuangti.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="houtaidenglu.resx">
       <DependentUpon>houtaidenglu.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,6 +178,50 @@
     <EmbeddedResource Include="前端\主页面\zhuye.resx">
       <DependentUpon>zhuye.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="BoxbagManageSystemDataSet1.xsc">
+      <DependentUpon>BoxbagManageSystemDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoxbagManageSystemDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BoxbagManageSystemDataSet1.xss">
+      <DependentUpon>BoxbagManageSystemDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet11.xsc">
+      <DependentUpon>BoxbagManageSystemDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet11.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoxbagManageSystemDataSet11.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BoxbagManageSystemDataSet11.xss">
+      <DependentUpon>BoxbagManageSystemDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet2.xsc">
+      <DependentUpon>BoxbagManageSystemDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoxbagManageSystemDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BoxbagManageSystemDataSet2.xss">
+      <DependentUpon>BoxbagManageSystemDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet3.xsc">
+      <DependentUpon>BoxbagManageSystemDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="BoxbagManageSystemDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoxbagManageSystemDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BoxbagManageSystemDataSet3.xss">
+      <DependentUpon>BoxbagManageSystemDataSet3.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -165,8 +238,8 @@
   <ItemGroup>
     <Folder Include="NewFolder1 - 复制%282%29\" />
     <Folder Include="NewFolder1 - 复制\" />
-    <Folder Include="后端\" />
-    <Folder Include="管理员\" />
+    <Folder Include="后端\NewFolder1\" />
+    <Folder Include="管理\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
