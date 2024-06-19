@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Signup));
-            this.button2 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,31 +43,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button2.Font = new System.Drawing.Font("宋体", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.Location = new System.Drawing.Point(529, 98);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(73, 54);
-            this.button2.TabIndex = 26;
-            this.button2.Text = "<";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(669, 270);
+            this.label7.Location = new System.Drawing.Point(101, 223);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(718, 23);
+            this.label7.Size = new System.Drawing.Size(502, 23);
             this.label7.TabIndex = 25;
-            this.label7.Text = "-----------------------------------------------------------";
+            this.label7.Text = "-----------------------------------------";
             // 
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("宋体", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtName.Location = new System.Drawing.Point(666, 362);
+            this.txtName.Location = new System.Drawing.Point(98, 315);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(592, 53);
@@ -79,7 +67,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label4.Font = new System.Drawing.Font("宋体", 24F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(666, 319);
+            this.label4.Location = new System.Drawing.Point(98, 272);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(185, 40);
             this.label4.TabIndex = 23;
@@ -90,7 +78,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(659, 170);
+            this.label3.Location = new System.Drawing.Point(84, 121);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(680, 81);
             this.label3.TabIndex = 22;
@@ -101,7 +89,7 @@
             this.button1.BackColor = System.Drawing.Color.Black;
             this.button1.Font = new System.Drawing.Font("Sylfaen", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(751, 704);
+            this.button1.Location = new System.Drawing.Point(183, 657);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(432, 89);
             this.button1.TabIndex = 21;
@@ -111,7 +99,7 @@
             // 
             // txtPwd
             // 
-            this.txtPwd.Location = new System.Drawing.Point(666, 605);
+            this.txtPwd.Location = new System.Drawing.Point(98, 558);
             this.txtPwd.Multiline = true;
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.PasswordChar = '*';
@@ -123,7 +111,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label2.Font = new System.Drawing.Font("宋体", 24F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(666, 562);
+            this.label2.Location = new System.Drawing.Point(98, 515);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(185, 40);
             this.label2.TabIndex = 17;
@@ -132,7 +120,7 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("宋体", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtEmail.Location = new System.Drawing.Point(666, 478);
+            this.txtEmail.Location = new System.Drawing.Point(98, 431);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(592, 53);
@@ -143,7 +131,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label1.Font = new System.Drawing.Font("宋体", 24F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(666, 435);
+            this.label1.Location = new System.Drawing.Point(98, 388);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 40);
             this.label1.TabIndex = 18;
@@ -151,11 +139,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(816, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(448, 900);
+            this.pictureBox1.Size = new System.Drawing.Size(392, 802);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 16;
             this.pictureBox1.TabStop = false;
@@ -164,7 +151,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("宋体", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkBox1.Location = new System.Drawing.Point(1221, 624);
+            this.checkBox1.Location = new System.Drawing.Point(654, 576);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(18, 17);
@@ -176,9 +163,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1440, 900);
+            this.ClientSize = new System.Drawing.Size(1198, 798);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label4);
@@ -199,8 +185,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label4;

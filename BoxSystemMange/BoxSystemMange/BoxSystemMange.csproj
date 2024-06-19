@@ -59,6 +59,18 @@
     <Compile Include="dindan.Designer.cs">
       <DependentUpon>dindan.cs</DependentUpon>
     </Compile>
+    <Compile Include="gereninfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gereninfo.Designer.cs">
+      <DependentUpon>gereninfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="houtaidenglu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="houtaidenglu.Designer.cs">
+      <DependentUpon>houtaidenglu.cs</DependentUpon>
+    </Compile>
     <Compile Include="information.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +115,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="dindan.resx">
       <DependentUpon>dindan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gereninfo.resx">
+      <DependentUpon>gereninfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="houtaidenglu.resx">
+      <DependentUpon>houtaidenglu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="information.resx">
       <DependentUpon>information.cs</DependentUpon>

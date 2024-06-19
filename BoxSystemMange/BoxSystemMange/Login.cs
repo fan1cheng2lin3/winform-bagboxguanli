@@ -17,11 +17,20 @@ namespace BoxSystemMange
     {
 
         public static string StrValue = string.Empty;
-        public static string StrValue11 = string.Empty;
         public static int CustomerId;
         public static string Employee_Id = " ";
         public static bool Dflag = false;//false:是昔通员工，true是销售部员工
         public static bool Bflag = false;//false:是昔通员工，true是管理员
+        public static bool iflogin = false;//false:是昔通员工，true是管理员
+
+        public delegate void HidePanelDelegate();
+        public HidePanelDelegate HidePanelHandler; // 声明一个委托变量
+
+
+
+
+        public delegate void HidePanel();
+        public HidePanel HidePanebbb; // 声明一个委托变量
 
         public Login()
         {
@@ -57,17 +66,13 @@ namespace BoxSystemMange
                         //Form1.Aflog = true;
 
                         Name = txtName.Text;
-                        
                         StrValue = txtName.Text;
-                        StrValue11 = txtName.Text;
-
-
                         CustomerId = Convert.ToInt32(dt.Rows[0]["Customerld"]);
-
-                        this.Visible = false;
+                        HidePanebbb?.Invoke();
+                        iflogin = true;
                         this.Close();
-                        //Front t1 = new Front();
-                        //t1.ShowDialog();
+
+                        
 
 
 
@@ -99,15 +104,17 @@ namespace BoxSystemMange
 
 
                         StrValue = txtName.Text;
-                        StrValue11 = txtName.Text;
+                        HidePanebbb?.Invoke();
 
                         this.Close();
 
+                        iflogin = true;
+
                         //Form1.Aflog = true;
                         //Form1.flag = 2;
-                        
 
-                       
+
+
                     }
                     else
                     {
@@ -129,9 +136,11 @@ namespace BoxSystemMange
                         Name = txtName.Text;
                         //Form1.Aflog = true;
                         //Form1.flag = 3;
-
+                        HidePanebbb?.Invoke();
                         Dflag = false;
                         Bflag = true;
+
+                        iflogin = true;
                         this.Close();
                     }
                     else
@@ -147,6 +156,24 @@ namespace BoxSystemMange
         private void Login_Load(object sender, EventArgs e)
         {
             this.AcceptButton = button1;
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            groupBox1.Visible = true;
+        }
+
+        private void label5_MouseDown(object sender, MouseEventArgs e)
+        {
+            HidePanelHandler?.Invoke();
+            
+        }
+
+
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

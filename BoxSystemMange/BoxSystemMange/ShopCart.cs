@@ -16,5 +16,21 @@ namespace BoxSystemMange
         {
             InitializeComponent();
         }
+
+        private void ShopCart_Load(object sender, EventArgs e)
+        {
+            if (Login.iflogin == true)
+            {
+                //panel1.Visible = false;
+
+            }
+        }
+
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+            Login t1 = new Login();
+            t1.ShowDialog();
+        }
     }
 }

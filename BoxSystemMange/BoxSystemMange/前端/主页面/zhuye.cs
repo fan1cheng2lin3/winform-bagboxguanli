@@ -15,24 +15,24 @@ namespace BoxSystemMange
     public partial class zhuye : Form
     {
         public static string StaticNewIdentifier = "";
-        private Timer timer;
         private new AutoAdaptWindowsSize AutoSize;
         private Point mPoint;
-        private Timer slideTimer;
         private AutoAdaptWindowsSize autoAdaptWindowsSize;
+        public Point originalAutoScrollMinSize;
+        private bool button6ClickedOnce = false;
+
+
 
         public zhuye()
         {
             InitializeComponent();
             UpdateLabels();
 
-
-            //InitializeSlidePanel();
-            //InitializeTimer();
-
             this.IsMdiContainer = true; // 设置主窗体为MDI容器
             autoAdaptWindowsSize = new AutoAdaptWindowsSize(this);
             this.SizeChanged += new EventHandler(zhuye_SizeChanged);// 添加窗体大小变化事件处理
+
+            
         }
 
 
@@ -92,7 +92,10 @@ namespace BoxSystemMange
 
         }
 
-
+        /// <summary>
+        /// 计算flowLayoutPanel5的高度传
+        /// </summary>
+        /// <param name="outerFlowLayout"></param>
         private void SetFlowLayoutPanelHeightToContainInnerFlowLayout(FlowLayoutPanel outerFlowLayout)
         {
             // 确保外层FlowLayoutPanel中有控件
@@ -117,26 +120,42 @@ namespace BoxSystemMange
         private void zhuye_Load(object sender, EventArgs e)
         {
 
-            LoadDataFromDatabase(flowLayoutPanel3, "优惠");
-            LoadDataFromDatabase(flowLayoutPanel1, "推荐");
-            LoadDataFromDatabase2(flowLayoutPanel6, "分类", "1");
-
+            init();
+           
             
-            AutoSize = new AutoAdaptWindowsSize(this);
-            zhuyepanel.Visible = false;
-            zhuyeflow.Dock = DockStyle.Fill;
-            zhuyepanel.Dock = DockStyle.Fill;
-            panel5.Dock = DockStyle.Fill;
-
-            // 重新计算行数并调整大小
-            flowLayoutPanel3.Size = new Size(flowLayoutPanel3.Width + panel4.Width-200, 350 * CalculateRowCount(flowLayoutPanel3));
-            flowLayoutPanel1.Size = new Size(flowLayoutPanel1.Width + panel4.Width-200 , 350 * CalculateRowCount(flowLayoutPanel1));
-            flowLayoutPanel6.Size = new Size(flowLayoutPanel6.Width + panel4.Width-200 , 350 * CalculateRowCount(flowLayoutPanel6));
-
-            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
-
         }
 
+        public void init()
+        {
+
+            LoadDataFromDatabase4(flowLayoutPanel3, "优惠");
+            LoadDataFromDatabase4(flowLayoutPanel1, "推荐");
+            LoadDataFromDatabase4(flowLayoutPanel6, "分类", "1");
+
+            AutoSize = new AutoAdaptWindowsSize(this);
+            zhuyepanel.Visible = false;
+            zhuyepanel2.Visible = false;
+
+            zhuyepanel.Dock = DockStyle.Fill;
+            zhuyepanel2.Dock = DockStyle.Fill;
+
+
+            zhuyeflow.Dock = DockStyle.Fill;
+            zhuyeflow2.Dock = DockStyle.Fill;
+
+            
+            panel5.Dock = DockStyle.Fill;
+            panel11.Dock = DockStyle.Fill;
+
+            // 重新计算行数并调整大小
+            flowLayoutPanel3.Size = new Size(flowLayoutPanel3.Width + panel4.Width - 200, 350 * CalculateRowCount(flowLayoutPanel3));
+            flowLayoutPanel1.Size = new Size(flowLayoutPanel1.Width + panel4.Width - 200, 350 * CalculateRowCount(flowLayoutPanel1));
+            flowLayoutPanel6.Size = new Size(flowLayoutPanel6.Width + panel4.Width - 200, 350 * CalculateRowCount(flowLayoutPanel6));
+
+            
+
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+        }
 
 
         private void zhuye_StyleChanged(object sender, EventArgs e)
@@ -167,7 +186,6 @@ namespace BoxSystemMange
             }
 
             
-
             panel4.Visible = false;
             button5.Visible = false;
             button4.Visible = true;
@@ -180,29 +198,32 @@ namespace BoxSystemMange
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void pictureBox_Click(object sender, EventArgs e)
         {
+
+            panel11.Visible = false;
+            panel5.AutoScroll = false;
+
             if (sender is PictureBox pictureBox)
             {
+                originalAutoScrollMinSize = panel5.AutoScrollPosition;
+                if (originalAutoScrollMinSize.Y < 0)
+                {
+                    originalAutoScrollMinSize.Y = -originalAutoScrollMinSize.Y;
+                }
+
 
                 zhuye.StaticNewIdentifier = pictureBox.Tag.ToString();
-
-
                 Tproducts t1 = new Tproducts();
                 Zichuangti(t1);
+                panel8.Visible = true;
 
             }
         }
 
-        private void LoadDataFromDatabase2(FlowLayoutPanel flowLayoutPanel, string type,string Classification)//string aaa
+        private void LoadDataFromDatabase4(FlowLayoutPanel flowLayoutPanel, string type = "", string classification = "")
         {
             DB.GetCn();
-
             flowLayoutPanel.Controls.Clear();
 
             int maskYH = 1; // 优惠
@@ -211,21 +232,33 @@ namespace BoxSystemMange
 
             // 根据输入的类型确定位掩码的组合
             int combinedMask = 0;
-            if (type.Contains("优惠"))
+            if (!string.IsNullOrEmpty(type))
             {
-                combinedMask |= maskYH;
-            }
-            if (type.Contains("推荐"))
-            {
-                combinedMask |= maskTJ;
-            }
-            if (type.Contains("分类"))
-            {
-                combinedMask |= maskFL;
+                if (type.Contains("优惠"))
+                {
+                    combinedMask |= maskYH;
+                }
+                if (type.Contains("推荐"))
+                {
+                    combinedMask |= maskTJ;
+                }
+                if (type.Contains("分类"))
+                {
+                    combinedMask |= maskFL;
+                }
             }
 
-            // 查询数据库
-            string sql = "SELECT * FROM Product_Table WHERE (leixing & " + combinedMask + ") = " + combinedMask + "and Classification_ID = '"+ Classification+"'";    
+            // 构建SQL查询语句
+            string sql = "SELECT * FROM Product_Table";
+            if (combinedMask > 0)
+            {
+                sql += " WHERE (leixing & " + combinedMask + ") = " + combinedMask;
+            }
+            if (!string.IsNullOrEmpty(classification))
+            {
+                sql += (combinedMask > 0 ? " AND " : " WHERE ") + "Classification_ID = '" + classification + "'";
+            }
+
             DataTable dataTable = DB.GetDataSet(sql);
 
             // 为每条记录创建Panel
@@ -235,7 +268,6 @@ namespace BoxSystemMange
                 panel1.Size = new Size(200, 350);
                 panel1.BackColor = Color.Transparent;
 
-                // 创建一个新的Panel来代替Image控件
                 Panel imagePanel = new Panel();
                 imagePanel.Size = new Size(190, 332);
                 imagePanel.BackColor = Color.Transparent;
@@ -246,6 +278,7 @@ namespace BoxSystemMange
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox.ImageLocation = row["image"].ToString();
                 pictureBox.BackColor = Color.White;
+
                 // 为PictureBox添加Click事件
                 // 将new标识符存储在Tag属性中
                 pictureBox.Tag = row["Goods_ID"].ToString();
@@ -253,8 +286,7 @@ namespace BoxSystemMange
 
                 imagePanel.Controls.Add(pictureBox);
 
-
-                //// 创建Label控件并处理<br>标签以实现换行
+                //创建Label控件并处理<br>标签以实现换行
                 Label label1 = new Label();
                 string labelText1 = row["Price"].ToString().Replace("<br>", Environment.NewLine);
                 label1.Text = "￥" + labelText1;
@@ -274,156 +306,9 @@ namespace BoxSystemMange
         }
 
 
-        private void LoadDataFromDatabase(FlowLayoutPanel flowLayoutPanel,string type)//string aaa
-        {
-            DB.GetCn();
-            
-            flowLayoutPanel.Controls.Clear();
-            
-            int maskYH = 1; // 优惠
-            int maskTJ = 2; // 推荐
-            int maskFL = 4; // 分类
 
-            // 根据输入的类型确定位掩码的组合
-            int combinedMask = 0;
-            if (type.Contains("优惠"))
-            {
-                combinedMask |= maskYH;
-            }
-            if (type.Contains("推荐"))
-            {
-                combinedMask |= maskTJ;
-            }
-            if (type.Contains("分类"))
-            {
-                combinedMask |= maskFL;
-            }
 
-            // 查询数据库
-            string sql = "SELECT * FROM Product_Table WHERE (leixing & " + combinedMask + ") = " + combinedMask;         // 替换为您的表名和列名
-            DataTable dataTable = DB.GetDataSet(sql);
 
-            // 为每条记录创建Panel
-            foreach (DataRow row in dataTable.Rows)
-            {
-                Panel panel1 = new Panel();
-                panel1.Size = new Size(200, 350);
-                panel1.BackColor = Color.Transparent;
-
-                // 创建一个新的Panel来代替Image控件
-                Panel imagePanel = new Panel();
-                imagePanel.Size = new Size(190, 332);
-                imagePanel.BackColor = Color.Transparent;
-                panel1.Controls.Add(imagePanel);
-
-                PictureBox pictureBox = new PictureBox();
-                pictureBox.Size = new Size(185, 201);
-                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                pictureBox.ImageLocation = row["image"].ToString();
-                pictureBox.BackColor = Color.White;
-                // 为PictureBox添加Click事件
-                // 将new标识符存储在Tag属性中
-                pictureBox.Tag = row["Goods_ID"].ToString();
-                pictureBox.Click += new EventHandler(pictureBox_Click);
-
-                imagePanel.Controls.Add(pictureBox);
-
-                //// 创建Label控件并处理<br>标签以实现换行
-                Label label1 = new Label();
-                string labelText1 = row["Price"].ToString().Replace("<br>", Environment.NewLine);
-                label1.Text = "￥"+labelText1;
-                label1.AutoSize = true;
-                label1.Font = new Font(label1.Font.FontFamily,18,FontStyle.Bold);
-                label1.ForeColor = Color.Red;
-                label1.BackColor = Color.Transparent;
-                label1.Location = new Point(5, 205);
-                imagePanel.Controls.Add(label1);
-                // 添加到flowLayoutPanel
-                flowLayoutPanel.Controls.Add(panel1);
-            }
-
-            // 设置FlowLayoutPanel的属性
-            flowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
-            flowLayoutPanel.WrapContents = true;
-        }
-
-        private void LoadDataFromDatabase3(FlowLayoutPanel flowLayoutPanel)//string aaa
-        {
-            DB.GetCn();
-
-            flowLayoutPanel.Controls.Clear();
-            // 查询数据库
-            string sql = "SELECT * FROM Product_Table" ;         // 替换为您的表名和列名
-            DataTable dataTable = DB.GetDataSet(sql);
-
-            // 为每条记录创建Panel
-            foreach (DataRow row in dataTable.Rows)
-            {
-                Panel panel1 = new Panel();
-                panel1.Size = new Size(200, 350);
-                panel1.BackColor = Color.Transparent;
-
-                // 创建一个新的Panel来代替Image控件
-                Panel imagePanel = new Panel();
-                imagePanel.Size = new Size(190, 332);
-                imagePanel.BackColor = Color.Transparent;
-                panel1.Controls.Add(imagePanel);
-
-                PictureBox pictureBox = new PictureBox();
-                pictureBox.Size = new Size(185, 201);
-                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                pictureBox.ImageLocation = row["image"].ToString();
-                pictureBox.BackColor = Color.White;
-                // 为PictureBox添加Click事件
-                // 将new标识符存储在Tag属性中
-                pictureBox.Tag = row["Goods_ID"].ToString();
-                pictureBox.Click += new EventHandler(pictureBox_Click);
-
-                imagePanel.Controls.Add(pictureBox);
-
-                //// 创建Label控件并处理<br>标签以实现换行
-                Label label1 = new Label();
-                string labelText1 = row["Price"].ToString().Replace("<br>", Environment.NewLine);
-                label1.Text = "￥" + labelText1;
-                label1.AutoSize = true;
-                label1.Font = new Font(label1.Font.FontFamily, 18, FontStyle.Bold);
-                label1.ForeColor = Color.Red;
-                label1.BackColor = Color.Transparent;
-                label1.Location = new Point(5, 205);
-                imagePanel.Controls.Add(label1);
-                // 添加到flowLayoutPanel
-                flowLayoutPanel.Controls.Add(panel1);
-            }
-
-            // 设置FlowLayoutPanel的属性
-            flowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
-            flowLayoutPanel.WrapContents = true;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            zhuyepanel.Visible = false;
-            panel5.AutoScrollPosition = new Point(0, 0);
-
-            
-            if (this.WindowState == FormWindowState.Maximized)
-            {
-                this.WindowState = FormWindowState.Normal;
-                daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
-            }
-            else
-            {
-                this.WindowState = FormWindowState.Maximized;
-                daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
-
-            }
-
-        }
 
         public void daxiao(FlowLayoutPanel flowLayoutPanel1,FlowLayoutPanel flowLayoutPanel3,FlowLayoutPanel flowLayoutPanel6)
         {
@@ -435,8 +320,6 @@ namespace BoxSystemMange
             flowLayoutPanel3.Size = new Size(flowLayoutPanel3.Width, 350 * CalculateRowCount(flowLayoutPanel3));
             flowLayoutPanel1.Size = new Size(flowLayoutPanel1.Width, 350 * CalculateRowCount(flowLayoutPanel1));
             flowLayoutPanel6.Size = new Size(flowLayoutPanel6.Width, 350 * CalculateRowCount(flowLayoutPanel6));
-
-            
         }
 
 
@@ -452,47 +335,8 @@ namespace BoxSystemMange
 
 
         /// <summary>
-        /// 变小
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-
-            panel4.Visible = true;
-            button5.Visible = true;
-            button4.Visible = false;
-
-            flowLayoutPanel3.Size = new Size(flowLayoutPanel3.Width - panel4.Width, 350 * CalculateRowCount(flowLayoutPanel3));
-            flowLayoutPanel1.Size = new Size(flowLayoutPanel1.Width - panel4.Width, 350 * CalculateRowCount(flowLayoutPanel1));
-            flowLayoutPanel6.Size = new Size(flowLayoutPanel6.Width - panel4.Width, 350 * CalculateRowCount(flowLayoutPanel6));
-
-            panel5.AutoScrollPosition = new Point(0, 0);
-        }
-
-        /// <summary>
-        /// 定制面板出现
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-            panel4.Visible = false;
-            button5.Visible = false;
-            button4.Visible = true;
-            flowLayoutPanel3.Size = new Size(flowLayoutPanel3.Width + panel4.Width, 350 * CalculateRowCount(flowLayoutPanel3));
-            flowLayoutPanel1.Size = new Size(flowLayoutPanel1.Width + panel4.Width, 350 * CalculateRowCount(flowLayoutPanel1));
-            flowLayoutPanel6.Size = new Size(flowLayoutPanel6.Width + panel4.Width, 350 * CalculateRowCount(flowLayoutPanel6));
-
-
-            panel5.AutoScrollPosition = new Point(0, 0);
-        }
-
-        // 方法：计算行数
-        /// <summary>
         /// 
-        /// 定制面板消失
+        /// 方法：计算行数
         /// </summary>
         /// <param name="panel"></param>
         /// <returns></returns>
@@ -515,6 +359,53 @@ namespace BoxSystemMange
         }
 
 
+       
+        /// <summary>
+        /// 定制面板消失
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+
+            panel4.Visible = true;
+            button5.Visible = true;
+            button4.Visible = false;
+
+            flowLayoutPanel3.Size = new Size(flowLayoutPanel3.Width - panel4.Width, 350 * CalculateRowCount(flowLayoutPanel3));
+            flowLayoutPanel1.Size = new Size(flowLayoutPanel1.Width - panel4.Width, 350 * CalculateRowCount(flowLayoutPanel1));
+            flowLayoutPanel6.Size = new Size(flowLayoutPanel6.Width - panel4.Width, 350 * CalculateRowCount(flowLayoutPanel6));
+
+
+
+
+
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+
+        }
+
+        /// <summary>
+        /// 定制面板出现
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button5_Click(object sender, EventArgs e)
+        {
+            panel4.Visible = false;
+            button5.Visible = false;
+            button4.Visible = true;
+            flowLayoutPanel3.Size = new Size(flowLayoutPanel3.Width + panel4.Width, 350 * CalculateRowCount(flowLayoutPanel3));
+            flowLayoutPanel1.Size = new Size(flowLayoutPanel1.Width + panel4.Width, 350 * CalculateRowCount(flowLayoutPanel1));
+            flowLayoutPanel6.Size = new Size(flowLayoutPanel6.Width + panel4.Width, 350 * CalculateRowCount(flowLayoutPanel6));
+
+
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+
+        }
+
+
+
+
 
         private void button12_Click(object sender, EventArgs e)
         {
@@ -524,12 +415,43 @@ namespace BoxSystemMange
 
         private void button6_Click(object sender, EventArgs e)
         {
-            zhuyepanel.Visible = false;
+            panel5.AutoScroll = true;
 
 
-            panel5.AutoScrollPosition = new Point(0, 0);
+            if (zhuyepanel2.Visible == true)
+            {
+                zhuyepanel.Visible = true;
+                zhuyepanel2.Visible = false;
+                if (!Tproducts.isTproductsClosed)
+                {
+                    panel8.Visible = true;
+                }
+                button6ClickedOnce = true;
+            }
+            else if (!button6ClickedOnce || zhuyepanel.Visible == true)
+            {
+                // 第一次点击时的操作
+                //MessageBox.Show(originalAutoScrollMinSize.ToString());
+               
 
-            daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
+                zhuyepanel.Visible = false;
+                panel8.Visible = false;
+
+                // 执行其他布局调整方法
+                daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
+                SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+                panel5.AutoScrollPosition = originalAutoScrollMinSize;
+                button6ClickedOnce = true; // 更新按钮点击状态
+            }
+            else
+            {
+                // 第二次点击时的操作
+                panel5.AutoScrollPosition = new Point(0, 0); // 重置滚动位置
+
+            }
+
+
+
         }
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)
@@ -541,9 +463,14 @@ namespace BoxSystemMange
 
         private void button13_Click(object sender, EventArgs e)
         {
-
+            panel5.AutoScroll = false;
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
             ShopCart t1 = new ShopCart();
             Zichuangti(t1);
+
+            
+
+
 
         }
 
@@ -551,9 +478,9 @@ namespace BoxSystemMange
         public void Zichuangti(Form childForm)
         {
             // 假设 panel5 和 zhuyepanel 是已经定义好的控件
+
+
             panel5.AutoScrollPosition = new Point(0, 0);
-
-
 
             flowLayoutPanel5.Height = 1500;
             zhuyepanel.BringToFront();
@@ -576,6 +503,8 @@ namespace BoxSystemMange
         }
 
 
+
+
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
@@ -583,13 +512,11 @@ namespace BoxSystemMange
 
         private void button9_Click_1(object sender, EventArgs e)
         {
+            panel5.AutoScroll = false;
             dindan t1 = new dindan();
             Zichuangti(t1);
         }
-        private void label4_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void panel2_MouseDown(object sender, MouseEventArgs e)
         {
@@ -598,12 +525,14 @@ namespace BoxSystemMange
 
         private void button10_Click(object sender, EventArgs e)
         {
+            panel5.AutoScroll = false;
             community t1 = new community();
             Zichuangti(t1);
         }
 
         private void button14_Click(object sender, EventArgs e)
         {
+            panel5.AutoScroll = false;
             information t1 = new information();
             Zichuangti(t1);
         }
@@ -631,102 +560,204 @@ namespace BoxSystemMange
 
 
 
-        //没用的
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            //int step = 40; // 每次移动的步长（像素）
-
-            //if (isPanelVisible)
-            //{
-            //    // 滑动显示面板
-            //    if (panel4.Location.Y > this.ClientSize.Height - panel4.Height)
-            //    {
-            //        panel4.Location = new System.Drawing.Point(0, panel4.Location.Y - step);
-            //    }
-            //    else
-            //    {
-            //        panel4.Location = new System.Drawing.Point(0, this.ClientSize.Height - panel4.Height);
-            //        slideTimer.Stop(); // 滑动完成，停止计时器
-            //    }
-            //}
-            //else
-            //{
-            //    // 滑动隐藏面板
-            //    if (panel4.Location.Y < this.ClientSize.Height)
-            //    {
-            //        panel4.Location = new System.Drawing.Point(0, panel4.Location.Y + step);
-            //    }
-            //    else
-            //    {
-            //        panel4.Location = new System.Drawing.Point(0, this.ClientSize.Height);
-            //        panel4.Visible = false;
-            //        slideTimer.Stop(); // 滑动完成，停止计时器
-            //    }
-            //}
-        }
-
-        private void InitializeTimer()
-        {
-            // 初始化 Timer 控件
-            timer = new Timer
-            {
-                Interval = 1000 // 设置间隔为1分钟
-            };
-            timer.Tick += timer1_Tick;
-            timer.Start();
-
-
-            slideTimer = new Timer
-            {
-                Interval = 10 // 设置间隔为10毫秒，以实现平滑动画
-            };
-            slideTimer.Tick += timer2_Tick;
-
-
-        }
-
         private void button7_Click_1(object sender, EventArgs e)
         {
-            LoadDataFromDatabase2(flowLayoutPanel6, "分类", "1");
-            daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
-        }
-
-        private void button8_Click_1(object sender, EventArgs e)
-        {
-            LoadDataFromDatabase2(flowLayoutPanel6, "分类", "2");
-            daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
-        }
-
-        private void button11_Click_1(object sender, EventArgs e)
-        {
-            LoadDataFromDatabase2(flowLayoutPanel6, "分类", "4");
-            daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
-        }
-
-        private void button16_Click(object sender, EventArgs e)
-        {
-            LoadDataFromDatabase2(flowLayoutPanel6, "分类", "5");
-            daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
-        }
-
-        private void button17_Click(object sender, EventArgs e)
-        {
-            LoadDataFromDatabase2(flowLayoutPanel6, "分类", "3");
-            daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
-        }
-
-        private void button18_Click(object sender, EventArgs e)
-        {
-            LoadDataFromDatabase3(flowLayoutPanel6);
+            LoadDataFromDatabase4(flowLayoutPanel6, "分类", "1");
             daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
             SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
         }
 
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            LoadDataFromDatabase4(flowLayoutPanel6, "分类", "2");
+            daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            LoadDataFromDatabase4(flowLayoutPanel6, "分类", "3");
+            daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+        }
+
+        private void button11_Click_1(object sender, EventArgs e)
+        {
+            LoadDataFromDatabase4(flowLayoutPanel6, "分类", "4");
+            daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            LoadDataFromDatabase4(flowLayoutPanel6, "分类", "5");
+            daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+        }
+
+        
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            LoadDataFromDatabase4(flowLayoutPanel6);
+            daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+        }
+
+
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Login t1 = new Login();
-            t1.ShowDialog();
+            panel11.Visible = false;
+            originalAutoScrollMinSize = panel5.AutoScrollPosition;
+            if (originalAutoScrollMinSize.Y < 0)
+            {
+                originalAutoScrollMinSize.Y = -originalAutoScrollMinSize.Y;
 
+            }
+
+
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+            panel5.AutoScroll = false;
+
+            if (Login.iflogin == false)
+            {
+                Login t1 = new Login();
+                Zichuangti(t1);
+                t1.HidePanelHandler = new Login.HidePanelDelegate(jiaruSignup);
+                t1.HidePanebbb = new Login.HidePanel(hidepanel);
+            }
+            else
+            {
+                gereninfo t2 = new gereninfo();
+                Zichuangti(t2);
+
+            }
+            
+
+
+        }
+
+        private void hidepanel()
+        {
+            panel5.AutoScroll = true;
+            zhuyepanel.Visible = false;
+            panel8.Visible = false;
+
+            // 执行其他布局调整方法
+            daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+            panel5.AutoScrollPosition = originalAutoScrollMinSize;
+            button6ClickedOnce = true; // 更新按钮点击状态
+        }
+
+
+        /// <summary>
+        /// 二级窗体
+        /// </summary>
+        private void jiaruSignup()
+        {
+            Signup childForm = new Signup();
+
+            zhuyepanel2.BringToFront();
+            zhuyepanel2.Visible = true;
+            childForm.TopLevel = false;
+            childForm.Dock = DockStyle.Fill;
+            childForm.FormBorderStyle = FormBorderStyle.None; 
+            zhuyeflow2.Controls.Add(childForm); 
+            childForm.Show(); // 显示子窗体
+
+            // 关闭 zhuyeflow 面板中的其它子窗体
+            foreach (Control control in zhuyeflow2.Controls)
+            {
+                if (control is Form form && form != childForm) // 确保不关闭当前添加的子窗体
+                {
+                    form.Close();
+                }
+            }
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+            zhuyepanel.Visible = false;
+
+
+            //flowLayoutPanel6.Width = 10;
+            panel5.AutoScrollPosition = new Point(0, 0);
+
+
+
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+                daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+                daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
+
+            }
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+            if (Login.iflogin == true)
+            {
+                //panel1.Visible = false;
+
+            }
+
+
+            originalAutoScrollMinSize = panel5.AutoScrollPosition;
+            if (originalAutoScrollMinSize.Y < 0)
+            {
+                originalAutoScrollMinSize.Y = -originalAutoScrollMinSize.Y;
+            }
+
+
+            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+            panel5.AutoScroll = false;
+
+            if (Login.iflogin == false)
+            {
+                Login t1 = new Login();
+                Zichuangti(t1);
+                t1.HidePanelHandler = new Login.HidePanelDelegate(jiaruSignup);
+                t1.HidePanebbb = new Login.HidePanel(hidepanel);
+            }
+
+            panel11.Visible = false;
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+            houtaidenglu t1 = new houtaidenglu();
+            t1.ShowDialog();
         }
     }
 }

@@ -69,6 +69,9 @@ namespace BoxSystemMange
                     MessageBox.Show("注册成功");
                     this.Close();
 
+                    Login t1 = new Login();
+                    t1.ShowDialog();
+
                 }
             }
         }
@@ -88,6 +91,11 @@ namespace BoxSystemMange
         private void Signup_Load(object sender, EventArgs e)
         {
             this.AcceptButton = button1;
+        }
+      
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -37,7 +37,7 @@
             this.label999.Font = new System.Drawing.Font("宋体", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label999.Location = new System.Drawing.Point(22, 19);
             this.label999.Name = "label999";
-            this.label999.Size = new System.Drawing.Size(199, 35);
+            this.label999.Size = new System.Drawing.Size(243, 43);
             this.label999.TabIndex = 0;
             this.label999.Text = "购物车(12)";
             // 
@@ -49,6 +49,7 @@
             this.Controls.Add(this.label999);
             this.Name = "ShopCart";
             this.Text = "ShopCart";
+            this.Load += new System.EventHandler(this.ShopCart_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
