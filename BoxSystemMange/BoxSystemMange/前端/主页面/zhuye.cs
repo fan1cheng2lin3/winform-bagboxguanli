@@ -203,17 +203,21 @@ namespace BoxSystemMange
         private void pictureBox_Click(object sender, EventArgs e)
         {
 
+            originalAutoScrollMinSize = panel5.AutoScrollPosition;
+            if (originalAutoScrollMinSize.Y < 0)
+            {
+                originalAutoScrollMinSize.Y = -originalAutoScrollMinSize.Y;
+            }
+
+
             panel11.Visible = false;
             panel5.AutoScroll = false;
 
+
+
             if (sender is PictureBox pictureBox)
             {
-                originalAutoScrollMinSize = panel5.AutoScrollPosition;
-                if (originalAutoScrollMinSize.Y < 0)
-                {
-                    originalAutoScrollMinSize.Y = -originalAutoScrollMinSize.Y;
-                }
-
+                
 
                 zhuye.StaticNewIdentifier = pictureBox.Tag.ToString();
                 Tproducts t1 = new Tproducts();
@@ -221,6 +225,8 @@ namespace BoxSystemMange
                 panel8.Visible = true;
 
             }
+
+
         }
 
         private void LoadDataFromDatabase4(FlowLayoutPanel flowLayoutPanel, string type = "", string classification = "")
@@ -442,6 +448,7 @@ namespace BoxSystemMange
                 // 执行其他布局调整方法
                 daxiao(flowLayoutPanel1, flowLayoutPanel3, flowLayoutPanel6);
                 SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+                //MessageBox.Show(originalAutoScrollMinSize.ToString());
                 panel5.AutoScrollPosition = originalAutoScrollMinSize;
                 button6ClickedOnce = true; // 更新按钮点击状态
             }
@@ -477,9 +484,21 @@ namespace BoxSystemMange
         }
 
 
+        public void gundongtiao()
+        {
+            originalAutoScrollMinSize = panel5.AutoScrollPosition;
+            if (originalAutoScrollMinSize.Y < 0)
+            {
+                originalAutoScrollMinSize.Y = -originalAutoScrollMinSize.Y;
+            }
+
+        }
+
         private void button13_Click(object sender, EventArgs e)
         {
 
+
+            gundongtiao();
             panel5.AutoScroll = false;
             denglu();
             SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
@@ -533,6 +552,8 @@ namespace BoxSystemMange
 
         private void button9_Click_1(object sender, EventArgs e)
         {
+            
+            gundongtiao();
             panel5.AutoScroll = false;
             denglu();
             dindan t1 = new dindan();
@@ -547,6 +568,7 @@ namespace BoxSystemMange
 
         private void button10_Click(object sender, EventArgs e)
         {
+            gundongtiao();
             panel5.AutoScroll = false;
             denglu();
             community t1 = new community();
@@ -555,6 +577,7 @@ namespace BoxSystemMange
 
         private void button14_Click(object sender, EventArgs e)
         {
+            gundongtiao();
             panel5.AutoScroll = false;
             denglu();
             information t1 = new information();
@@ -631,14 +654,15 @@ namespace BoxSystemMange
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            
             panel11.Visible = false;
+            
             originalAutoScrollMinSize = panel5.AutoScrollPosition;
             if (originalAutoScrollMinSize.Y < 0)
             {
                 originalAutoScrollMinSize.Y = -originalAutoScrollMinSize.Y;
 
             }
-
 
             if(zhuyepanel.Visible == false)
             {
@@ -731,7 +755,7 @@ namespace BoxSystemMange
 
 
             //flowLayoutPanel6.Width = 10;
-            panel5.AutoScrollPosition = new Point(0, 0);
+            //panel5.AutoScrollPosition = new Point(0, 0);
 
 
 

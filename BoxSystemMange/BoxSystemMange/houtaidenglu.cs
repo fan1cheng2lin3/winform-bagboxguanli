@@ -107,9 +107,10 @@ namespace BoxSystemMange
             }
         }
 
+
         private void houtaidenglu_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

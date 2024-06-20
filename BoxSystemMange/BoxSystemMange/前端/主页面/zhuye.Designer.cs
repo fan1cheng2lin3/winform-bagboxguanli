@@ -33,6 +33,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -79,6 +80,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.button14 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -120,8 +122,6 @@
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.zhuyepanel2.SuspendLayout();
@@ -200,6 +200,16 @@
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
             this.panel3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseMove);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(662, 18);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(28, 25);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "O";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -207,7 +217,7 @@
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label11.Location = new System.Drawing.Point(117, 11);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(38, 40);
+            this.label11.Size = new System.Drawing.Size(32, 33);
             this.label11.TabIndex = 18;
             this.label11.Text = "-";
             this.label11.Click += new System.EventHandler(this.label11_Click);
@@ -219,7 +229,7 @@
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label10.Location = new System.Drawing.Point(60, 22);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 23);
+            this.label10.Size = new System.Drawing.Size(29, 19);
             this.label10.TabIndex = 17;
             this.label10.Text = "口";
             this.label10.Click += new System.EventHandler(this.label10_Click);
@@ -231,7 +241,7 @@
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label9.Location = new System.Drawing.Point(14, 14);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(32, 33);
+            this.label9.Size = new System.Drawing.Size(26, 27);
             this.label9.TabIndex = 16;
             this.label9.Text = "x";
             this.label9.Click += new System.EventHandler(this.label9_Click);
@@ -267,7 +277,7 @@
             this.button4.Location = new System.Drawing.Point(1431, 0);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(40, 852);
+            this.button4.Size = new System.Drawing.Size(40, 872);
             this.button4.TabIndex = 14;
             this.button4.Text = "<";
             this.button4.UseVisualStyleBackColor = false;
@@ -348,7 +358,7 @@
             this.label15.Font = new System.Drawing.Font("宋体", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label15.Location = new System.Drawing.Point(163, 83);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(330, 60);
+            this.label15.Size = new System.Drawing.Size(265, 48);
             this.label15.TabIndex = 1;
             this.label15.Text = "请登录查看";
             this.label15.Click += new System.EventHandler(this.label15_Click);
@@ -410,7 +420,7 @@
             this.label46.Font = new System.Drawing.Font("宋体", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label46.Location = new System.Drawing.Point(21, 30);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(169, 37);
+            this.label46.Size = new System.Drawing.Size(137, 30);
             this.label46.TabIndex = 0;
             this.label46.Text = "特别优惠";
             // 
@@ -422,7 +432,7 @@
             this.flowLayoutPanel3.Location = new System.Drawing.Point(4, 102);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(1250, 201);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(1250, 800);
             this.flowLayoutPanel3.TabIndex = 6;
             // 
             // label4
@@ -437,7 +447,7 @@
             // panel46
             // 
             this.panel46.Controls.Add(this.label45);
-            this.panel46.Location = new System.Drawing.Point(3, 309);
+            this.panel46.Location = new System.Drawing.Point(3, 908);
             this.panel46.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel46.Name = "panel46";
             this.panel46.Size = new System.Drawing.Size(1252, 98);
@@ -449,7 +459,7 @@
             this.label45.Font = new System.Drawing.Font("宋体", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label45.Location = new System.Drawing.Point(21, 30);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(93, 37);
+            this.label45.Size = new System.Drawing.Size(75, 30);
             this.label45.TabIndex = 0;
             this.label45.Text = "推荐";
             // 
@@ -458,7 +468,7 @@
             this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.flowLayoutPanel1.Controls.Add(this.label5);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 413);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 1012);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1250, 79);
@@ -483,7 +493,7 @@
             this.panel9.Controls.Add(this.button8);
             this.panel9.Controls.Add(this.button7);
             this.panel9.Controls.Add(this.panel10);
-            this.panel9.Location = new System.Drawing.Point(3, 498);
+            this.panel9.Location = new System.Drawing.Point(3, 1097);
             this.panel9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1252, 69);
@@ -570,7 +580,7 @@
             this.label7.Font = new System.Drawing.Font("宋体", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label7.Location = new System.Drawing.Point(1, 12);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(93, 37);
+            this.label7.Size = new System.Drawing.Size(75, 30);
             this.label7.TabIndex = 0;
             this.label7.Text = "分类";
             this.label7.Click += new System.EventHandler(this.label7_Click);
@@ -580,7 +590,7 @@
             this.flowLayoutPanel6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.flowLayoutPanel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.flowLayoutPanel6.Controls.Add(this.label8);
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(4, 573);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(4, 1172);
             this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
             this.flowLayoutPanel6.Size = new System.Drawing.Size(1250, 61);
@@ -606,7 +616,7 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(1, 787);
+            this.panel2.Location = new System.Drawing.Point(3, 797);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(195, 98);
@@ -682,13 +692,23 @@
             this.panel7.Size = new System.Drawing.Size(200, 913);
             this.panel7.TabIndex = 13;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 562);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(191, 62);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "ceshi";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label12.Location = new System.Drawing.Point(19, 22);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(149, 60);
+            this.label12.Size = new System.Drawing.Size(120, 48);
             this.label12.TabIndex = 11;
             this.label12.Text = "LOGO";
             this.label12.Click += new System.EventHandler(this.label12_Click);
@@ -774,7 +794,7 @@
             // 
             // button21
             // 
-            this.button21.Location = new System.Drawing.Point(1025, 5);
+            this.button21.Location = new System.Drawing.Point(753, 0);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(186, 77);
             this.button21.TabIndex = 1;
@@ -783,7 +803,7 @@
             // 
             // button22
             // 
-            this.button22.Location = new System.Drawing.Point(843, 5);
+            this.button22.Location = new System.Drawing.Point(571, 0);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(186, 77);
             this.button22.TabIndex = 0;
@@ -795,9 +815,9 @@
             // 
             this.panel6.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 852);
+            this.panel6.Location = new System.Drawing.Point(0, 872);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1471, 30);
+            this.panel6.Size = new System.Drawing.Size(1471, 10);
             this.panel6.TabIndex = 11;
             // 
             // button5
@@ -1091,7 +1111,7 @@
             this.label6.Font = new System.Drawing.Font("宋体", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label6.Location = new System.Drawing.Point(77, 8);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 37);
+            this.label6.Size = new System.Drawing.Size(75, 30);
             this.label6.TabIndex = 9;
             this.label6.Text = "定制";
             // 
@@ -1107,26 +1127,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(384, 822);
             this.panel4.TabIndex = 14;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(6, 562);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(191, 62);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "ceshi";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(753, 29);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 19;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // zhuye
             // 
