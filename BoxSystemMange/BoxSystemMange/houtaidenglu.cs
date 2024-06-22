@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BoxSystemMange.管理;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -92,9 +93,12 @@ namespace BoxSystemMange
                         this.Close();
                         Dflag = false;
                         Bflag = true;
-                        houtaichuangti t1 = new houtaichuangti();
-                        t1.ShowDialog();
+                        StrValue = txtName.Text;
 
+                        MessageBox.Show(StrValue);
+                        houtaizhuye t1 = new houtaizhuye();
+                        t1.ShowDialog();
+                       
                         ifdelu = true;
 
 

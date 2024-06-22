@@ -42,16 +42,6 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.button4 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.zhuyepanel2 = new System.Windows.Forms.Panel();
-            this.zhuyeflow2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button152 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.zhuyepanel = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label15 = new System.Windows.Forms.Label();
-            this.zhuyeflow = new System.Windows.Forms.FlowLayoutPanel();
-            this.button15 = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel47 = new System.Windows.Forms.Panel();
             this.label46 = new System.Windows.Forms.Label();
@@ -72,6 +62,16 @@
             this.label7 = new System.Windows.Forms.Label();
             this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
+            this.zhuyepanel2 = new System.Windows.Forms.Panel();
+            this.zhuyeflow2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button152 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.zhuyepanel = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.zhuyeflow = new System.Windows.Forms.FlowLayoutPanel();
+            this.button15 = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -122,13 +122,10 @@
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.zhuyepanel2.SuspendLayout();
-            this.zhuyeflow2.SuspendLayout();
-            this.zhuyepanel.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.zhuyeflow.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
             this.panel47.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -137,6 +134,11 @@
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
             this.flowLayoutPanel6.SuspendLayout();
+            this.zhuyepanel2.SuspendLayout();
+            this.zhuyeflow2.SuspendLayout();
+            this.zhuyepanel.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.zhuyeflow.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel7.SuspendLayout();
@@ -217,7 +219,7 @@
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label11.Location = new System.Drawing.Point(117, 11);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(32, 33);
+            this.label11.Size = new System.Drawing.Size(38, 40);
             this.label11.TabIndex = 18;
             this.label11.Text = "-";
             this.label11.Click += new System.EventHandler(this.label11_Click);
@@ -229,7 +231,7 @@
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label10.Location = new System.Drawing.Point(60, 22);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(29, 19);
+            this.label10.Size = new System.Drawing.Size(34, 23);
             this.label10.TabIndex = 17;
             this.label10.Text = "口";
             this.label10.Click += new System.EventHandler(this.label10_Click);
@@ -239,9 +241,9 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("宋体", 19.8F);
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(14, 14);
+            this.label9.Location = new System.Drawing.Point(13, 14);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(26, 27);
+            this.label9.Size = new System.Drawing.Size(32, 33);
             this.label9.TabIndex = 16;
             this.label9.Text = "x";
             this.label9.Click += new System.EventHandler(this.label9_Click);
@@ -286,110 +288,11 @@
             // panel5
             // 
             this.panel5.AutoScroll = true;
-            this.panel5.Controls.Add(this.zhuyepanel2);
-            this.panel5.Controls.Add(this.zhuyepanel);
             this.panel5.Controls.Add(this.flowLayoutPanel5);
-            this.panel5.Location = new System.Drawing.Point(3, 7);
+            this.panel5.Location = new System.Drawing.Point(8, 76);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1288, 797);
             this.panel5.TabIndex = 16;
-            // 
-            // zhuyepanel2
-            // 
-            this.zhuyepanel2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.zhuyepanel2.Controls.Add(this.zhuyeflow2);
-            this.zhuyepanel2.Location = new System.Drawing.Point(473, 3);
-            this.zhuyepanel2.Name = "zhuyepanel2";
-            this.zhuyepanel2.Size = new System.Drawing.Size(383, 23);
-            this.zhuyepanel2.TabIndex = 3;
-            this.zhuyepanel2.Tag = "";
-            // 
-            // zhuyeflow2
-            // 
-            this.zhuyeflow2.Controls.Add(this.button152);
-            this.zhuyeflow2.Controls.Add(this.label14);
-            this.zhuyeflow2.Location = new System.Drawing.Point(3, 13);
-            this.zhuyeflow2.Name = "zhuyeflow2";
-            this.zhuyeflow2.Size = new System.Drawing.Size(285, 86);
-            this.zhuyeflow2.TabIndex = 0;
-            // 
-            // button152
-            // 
-            this.button152.Location = new System.Drawing.Point(3, 3);
-            this.button152.Name = "button152";
-            this.button152.Size = new System.Drawing.Size(11, 3200);
-            this.button152.TabIndex = 0;
-            this.button152.Text = "button1";
-            this.button152.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(20, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(67, 15);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "二级窗体";
-            this.label14.Visible = false;
-            // 
-            // zhuyepanel
-            // 
-            this.zhuyepanel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.zhuyepanel.Controls.Add(this.panel11);
-            this.zhuyepanel.Controls.Add(this.zhuyeflow);
-            this.zhuyepanel.Location = new System.Drawing.Point(3, 4);
-            this.zhuyepanel.Name = "zhuyepanel";
-            this.zhuyepanel.Size = new System.Drawing.Size(468, 24);
-            this.zhuyepanel.TabIndex = 2;
-            this.zhuyepanel.Tag = "";
-            this.zhuyepanel.Paint += new System.Windows.Forms.PaintEventHandler(this.zhuyepanel_Paint);
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.label15);
-            this.panel11.Location = new System.Drawing.Point(16, 92);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(538, 172);
-            this.panel11.TabIndex = 12;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("宋体", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(163, 83);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(265, 48);
-            this.label15.TabIndex = 1;
-            this.label15.Text = "请登录查看";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
-            // 
-            // zhuyeflow
-            // 
-            this.zhuyeflow.Controls.Add(this.button15);
-            this.zhuyeflow.Controls.Add(this.label13);
-            this.zhuyeflow.Location = new System.Drawing.Point(3, 3);
-            this.zhuyeflow.Name = "zhuyeflow";
-            this.zhuyeflow.Size = new System.Drawing.Size(94, 80);
-            this.zhuyeflow.TabIndex = 0;
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(3, 3);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(11, 3200);
-            this.button15.TabIndex = 0;
-            this.button15.Text = "button15";
-            this.button15.UseVisualStyleBackColor = true;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(20, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(67, 15);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "一级窗体";
-            this.label13.Visible = false;
             // 
             // flowLayoutPanel5
             // 
@@ -420,7 +323,7 @@
             this.label46.Font = new System.Drawing.Font("宋体", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label46.Location = new System.Drawing.Point(21, 30);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(137, 30);
+            this.label46.Size = new System.Drawing.Size(169, 37);
             this.label46.TabIndex = 0;
             this.label46.Text = "特别优惠";
             // 
@@ -432,7 +335,7 @@
             this.flowLayoutPanel3.Location = new System.Drawing.Point(4, 102);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(1250, 800);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(1250, 20);
             this.flowLayoutPanel3.TabIndex = 6;
             // 
             // label4
@@ -447,7 +350,7 @@
             // panel46
             // 
             this.panel46.Controls.Add(this.label45);
-            this.panel46.Location = new System.Drawing.Point(3, 908);
+            this.panel46.Location = new System.Drawing.Point(3, 128);
             this.panel46.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel46.Name = "panel46";
             this.panel46.Size = new System.Drawing.Size(1252, 98);
@@ -459,7 +362,7 @@
             this.label45.Font = new System.Drawing.Font("宋体", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label45.Location = new System.Drawing.Point(21, 30);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(75, 30);
+            this.label45.Size = new System.Drawing.Size(93, 37);
             this.label45.TabIndex = 0;
             this.label45.Text = "推荐";
             // 
@@ -468,7 +371,7 @@
             this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.flowLayoutPanel1.Controls.Add(this.label5);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 1012);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 232);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1250, 79);
@@ -493,7 +396,7 @@
             this.panel9.Controls.Add(this.button8);
             this.panel9.Controls.Add(this.button7);
             this.panel9.Controls.Add(this.panel10);
-            this.panel9.Location = new System.Drawing.Point(3, 1097);
+            this.panel9.Location = new System.Drawing.Point(3, 317);
             this.panel9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1252, 69);
@@ -567,7 +470,7 @@
             // 
             // panel10
             // 
-            this.panel10.BackColor = System.Drawing.Color.Silver;
+            this.panel10.BackColor = System.Drawing.Color.Transparent;
             this.panel10.Controls.Add(this.label7);
             this.panel10.Location = new System.Drawing.Point(1, 3);
             this.panel10.Name = "panel10";
@@ -580,7 +483,7 @@
             this.label7.Font = new System.Drawing.Font("宋体", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label7.Location = new System.Drawing.Point(1, 12);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 30);
+            this.label7.Size = new System.Drawing.Size(93, 37);
             this.label7.TabIndex = 0;
             this.label7.Text = "分类";
             this.label7.Click += new System.EventHandler(this.label7_Click);
@@ -590,7 +493,7 @@
             this.flowLayoutPanel6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.flowLayoutPanel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.flowLayoutPanel6.Controls.Add(this.label8);
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(4, 1172);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(4, 392);
             this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
             this.flowLayoutPanel6.Size = new System.Drawing.Size(1250, 61);
@@ -604,6 +507,103 @@
             this.label8.Size = new System.Drawing.Size(67, 15);
             this.label8.TabIndex = 1;
             this.label8.Text = "分类面板";
+            // 
+            // zhuyepanel2
+            // 
+            this.zhuyepanel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.zhuyepanel2.Controls.Add(this.zhuyeflow2);
+            this.zhuyepanel2.Location = new System.Drawing.Point(495, 7);
+            this.zhuyepanel2.Name = "zhuyepanel2";
+            this.zhuyepanel2.Size = new System.Drawing.Size(383, 50);
+            this.zhuyepanel2.TabIndex = 3;
+            this.zhuyepanel2.Tag = "";
+            // 
+            // zhuyeflow2
+            // 
+            this.zhuyeflow2.Controls.Add(this.button152);
+            this.zhuyeflow2.Controls.Add(this.label14);
+            this.zhuyeflow2.Location = new System.Drawing.Point(3, 13);
+            this.zhuyeflow2.Name = "zhuyeflow2";
+            this.zhuyeflow2.Size = new System.Drawing.Size(285, 86);
+            this.zhuyeflow2.TabIndex = 0;
+            // 
+            // button152
+            // 
+            this.button152.Location = new System.Drawing.Point(3, 3);
+            this.button152.Name = "button152";
+            this.button152.Size = new System.Drawing.Size(11, 3200);
+            this.button152.TabIndex = 0;
+            this.button152.Text = "button1";
+            this.button152.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(20, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(67, 15);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "二级窗体";
+            this.label14.Visible = false;
+            // 
+            // zhuyepanel
+            // 
+            this.zhuyepanel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.zhuyepanel.Controls.Add(this.panel11);
+            this.zhuyepanel.Controls.Add(this.zhuyeflow);
+            this.zhuyepanel.Location = new System.Drawing.Point(5, 7);
+            this.zhuyepanel.Name = "zhuyepanel";
+            this.zhuyepanel.Size = new System.Drawing.Size(468, 50);
+            this.zhuyepanel.TabIndex = 2;
+            this.zhuyepanel.Tag = "";
+            this.zhuyepanel.Paint += new System.Windows.Forms.PaintEventHandler(this.zhuyepanel_Paint);
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.label15);
+            this.panel11.Location = new System.Drawing.Point(16, 92);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(538, 172);
+            this.panel11.TabIndex = 12;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("宋体", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label15.Location = new System.Drawing.Point(163, 83);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(330, 60);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "请登录查看";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
+            // 
+            // zhuyeflow
+            // 
+            this.zhuyeflow.Controls.Add(this.button15);
+            this.zhuyeflow.Controls.Add(this.label13);
+            this.zhuyeflow.Location = new System.Drawing.Point(3, 3);
+            this.zhuyeflow.Name = "zhuyeflow";
+            this.zhuyeflow.Size = new System.Drawing.Size(94, 80);
+            this.zhuyeflow.TabIndex = 0;
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(3, 3);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(11, 3200);
+            this.button15.TabIndex = 0;
+            this.button15.Text = "button15";
+            this.button15.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(20, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(67, 15);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "一级窗体";
+            this.label13.Visible = false;
             // 
             // toolTip1
             // 
@@ -679,6 +679,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel7.Controls.Add(this.label16);
             this.panel7.Controls.Add(this.button1);
             this.panel7.Controls.Add(this.label12);
             this.panel7.Controls.Add(this.button14);
@@ -708,7 +709,7 @@
             this.label12.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label12.Location = new System.Drawing.Point(19, 22);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(120, 48);
+            this.label12.Size = new System.Drawing.Size(149, 60);
             this.label12.TabIndex = 11;
             this.label12.Text = "LOGO";
             this.label12.Click += new System.EventHandler(this.label12_Click);
@@ -748,7 +749,9 @@
             // 
             // panel12
             // 
+            this.panel12.Controls.Add(this.zhuyepanel2);
             this.panel12.Controls.Add(this.panel5);
+            this.panel12.Controls.Add(this.zhuyepanel);
             this.panel12.Location = new System.Drawing.Point(202, 63);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(1343, 842);
@@ -763,11 +766,12 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel8.Controls.Add(this.label18);
             this.panel8.Controls.Add(this.button19);
             this.panel8.Controls.Add(this.button20);
             this.panel8.Controls.Add(this.button21);
             this.panel8.Controls.Add(this.button22);
-            this.panel8.Location = new System.Drawing.Point(194, 797);
+            this.panel8.Location = new System.Drawing.Point(202, 806);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1277, 83);
             this.panel8.TabIndex = 12;
@@ -1111,7 +1115,7 @@
             this.label6.Font = new System.Drawing.Font("宋体", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label6.Location = new System.Drawing.Point(77, 8);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 30);
+            this.label6.Size = new System.Drawing.Size(93, 37);
             this.label6.TabIndex = 9;
             this.label6.Text = "定制";
             // 
@@ -1127,6 +1131,28 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(384, 822);
             this.panel4.TabIndex = 14;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Red;
+            this.label16.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label16.Location = new System.Drawing.Point(162, 155);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(23, 23);
+            this.label16.TabIndex = 13;
+            this.label16.Text = "1";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Red;
+            this.label18.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.Location = new System.Drawing.Point(190, 1);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(23, 23);
+            this.label18.TabIndex = 15;
+            this.label18.Text = "1";
             // 
             // zhuye
             // 
@@ -1154,14 +1180,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
-            this.zhuyepanel2.ResumeLayout(false);
-            this.zhuyeflow2.ResumeLayout(false);
-            this.zhuyeflow2.PerformLayout();
-            this.zhuyepanel.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
-            this.zhuyeflow.ResumeLayout(false);
-            this.zhuyeflow.PerformLayout();
             this.flowLayoutPanel5.ResumeLayout(false);
             this.panel47.ResumeLayout(false);
             this.panel47.PerformLayout();
@@ -1176,6 +1194,14 @@
             this.panel10.PerformLayout();
             this.flowLayoutPanel6.ResumeLayout(false);
             this.flowLayoutPanel6.PerformLayout();
+            this.zhuyepanel2.ResumeLayout(false);
+            this.zhuyeflow2.ResumeLayout(false);
+            this.zhuyeflow2.PerformLayout();
+            this.zhuyepanel.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.zhuyeflow.ResumeLayout(false);
+            this.zhuyeflow.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1183,6 +1209,7 @@
             this.panel7.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.flowLayoutPanel4.ResumeLayout(false);
             this.panel49.ResumeLayout(false);
             this.panel49.PerformLayout();
@@ -1304,6 +1331,8 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label18;
     }
 }
 

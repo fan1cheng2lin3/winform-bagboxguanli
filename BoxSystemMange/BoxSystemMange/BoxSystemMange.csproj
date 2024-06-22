@@ -33,8 +33,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,10 +88,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BoxbagManageSystemDataSet3.xsd</DependentUpon>
     </Compile>
-    <Compile Include="community.cs">
+    <Compile Include="前端\community.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="community.Designer.cs">
+    <Compile Include="前端\community.Designer.cs">
       <DependentUpon>community.cs</DependentUpon>
     </Compile>
     <Compile Include="DB.cs" />
@@ -79,16 +101,28 @@
     <Compile Include="dindan.Designer.cs">
       <DependentUpon>dindan.cs</DependentUpon>
     </Compile>
-    <Compile Include="gereninfo.cs">
+    <Compile Include="前端\gereninfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="gereninfo.Designer.cs">
+    <Compile Include="前端\gereninfo.Designer.cs">
       <DependentUpon>gereninfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="houtaichuangti.cs">
+    <Compile Include="前端\主页面\zhuyeinfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="houtaichuangti.Designer.cs">
+    <Compile Include="前端\主页面\zhuyeinfo.Designer.cs">
+      <DependentUpon>zhuyeinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="管理\departmentguanli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="管理\departmentguanli.Designer.cs">
+      <DependentUpon>departmentguanli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="管理\houtaichuangti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="管理\houtaichuangti.Designer.cs">
       <DependentUpon>houtaichuangti.cs</DependentUpon>
     </Compile>
     <Compile Include="houtaidenglu.cs">
@@ -97,10 +131,10 @@
     <Compile Include="houtaidenglu.Designer.cs">
       <DependentUpon>houtaidenglu.cs</DependentUpon>
     </Compile>
-    <Compile Include="information.cs">
+    <Compile Include="前端\information.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="information.Designer.cs">
+    <Compile Include="前端\information.Designer.cs">
       <DependentUpon>information.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
@@ -135,23 +169,42 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="后端\houtaizhuye.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="后端\houtaizhuye.Designer.cs">
+      <DependentUpon>houtaizhuye.cs</DependentUpon>
+    </Compile>
+    <Compile Include="管理\Select_Log.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="管理\Select_Log.Designer.cs">
+      <DependentUpon>Select_Log.cs</DependentUpon>
+    </Compile>
     <Compile Include="脚本类\AutoAdaptWindowsSize.cs" />
-    <EmbeddedResource Include="community.resx">
+    <Compile Include="脚本类\ExcelHelper.cs" />
+    <EmbeddedResource Include="前端\community.resx">
       <DependentUpon>community.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dindan.resx">
       <DependentUpon>dindan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gereninfo.resx">
+    <EmbeddedResource Include="前端\gereninfo.resx">
       <DependentUpon>gereninfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="houtaichuangti.resx">
+    <EmbeddedResource Include="前端\主页面\zhuyeinfo.resx">
+      <DependentUpon>zhuyeinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="管理\departmentguanli.resx">
+      <DependentUpon>departmentguanli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="管理\houtaichuangti.resx">
       <DependentUpon>houtaichuangti.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="houtaidenglu.resx">
       <DependentUpon>houtaidenglu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="information.resx">
+    <EmbeddedResource Include="前端\information.resx">
       <DependentUpon>information.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
@@ -171,12 +224,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Signup.resx">
       <DependentUpon>Signup.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Tproducts.resx">
       <DependentUpon>Tproducts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="前端\主页面\zhuye.resx">
       <DependentUpon>zhuye.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="后端\houtaizhuye.resx">
+      <DependentUpon>houtaizhuye.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="管理\Select_Log.resx">
+      <DependentUpon>Select_Log.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="BoxbagManageSystemDataSet1.xsc">
       <DependentUpon>BoxbagManageSystemDataSet1.xsd</DependentUpon>
@@ -222,6 +282,7 @@
     <None Include="BoxbagManageSystemDataSet3.xss">
       <DependentUpon>BoxbagManageSystemDataSet3.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -238,11 +299,72 @@
   <ItemGroup>
     <Folder Include="NewFolder1 - 复制%282%29\" />
     <Folder Include="NewFolder1 - 复制\" />
-    <Folder Include="后端\NewFolder1\" />
-    <Folder Include="管理\" />
+    <Folder Include="管理\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxMSVidCtlLib">
+      <Guid>{B0EDF154-910A-11D2-B632-00C04F79498E}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="AxVisioViewer">
+      <Guid>{BA35B84E-A623-471B-8B09-6D72DD072F25}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="MSVidCtlLib">
+      <Guid>{B0EDF154-910A-11D2-B632-00C04F79498E}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VisioViewer">
+      <Guid>{BA35B84E-A623-471B-8B09-6D72DD072F25}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

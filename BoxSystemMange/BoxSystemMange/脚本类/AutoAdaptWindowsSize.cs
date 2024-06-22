@@ -24,7 +24,7 @@ namespace BoxSystemMange.脚本类
         private readonly HashSet<string> resizeControls = new HashSet<string> { "panel7", "panel2", "panel5", "label1", "label2", "button7" , "button11", "button6" ,
             "textBox1" , "button12" , "panel1", "panel4" , "label3", "label4", "label5" ,"button8","pictureBox1","flowLayoutPanel5","flowLayoutPanel3","flowLayoutPanel1",
         "zhuyepanel","panel12","panel6","panel3","panel9","panel10","flowLayoutPanel6","button1","button2","button3","button6","button13","button9","button10","button14","button16","button17",
-        "button18","label7","button21","button22","panel8","label9","label10","label11","label12","tableLayoutPanel2","tableLayoutPanel1","tableLayoutPanel3"};//
+        "button18","label7","button21","button22","panel8","label9","label10","label11","label12","tableLayoutPanel2","tableLayoutPanel1","tableLayoutPanel3","button20","button19","label16","label18"};//
 
         public AutoAdaptWindowsSize(Form form)
         {
