@@ -1,15 +1,18 @@
-﻿using BoxSystemMange.管理;
+﻿using BoxSystemMange.前端.主页面;
+using BoxSystemMange.管理;
 using BoxSystemMange.脚本类;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BoxSystemMange
 {
@@ -23,6 +26,7 @@ namespace BoxSystemMange
         private bool button6ClickedOnce = false;
         private int clickCount = 0;
         public bool dengluqingkuang = false;
+        public static string selectedGoodsID;
 
 
         public zhuye()
@@ -37,9 +41,6 @@ namespace BoxSystemMange
             
         }
 
-
-
-        
         private void timer1_Tick(object sender, EventArgs e)
         {
             UpdateLabels();
@@ -53,19 +54,9 @@ namespace BoxSystemMange
             // 更新 label2 显示当前的星期几
             label2.Text = DateTime.Now.ToString("dddd");
         }
-        private void InitializeSlidePanel()
-        {
-            // 设置面板初始位置（隐藏在窗体下方）
-            //panel4.Location = new System.Drawing.Point(0, this.ClientSize.Height);
-            //panel4.Visible = false; // 初始时面板不可见
-        }
 
-    
-       
         private void panelTop_MouseDown(object sender, MouseEventArgs e)
         {
-            
-
             mPoint = new Point(e.X, e.Y);
         }
 
@@ -77,8 +68,6 @@ namespace BoxSystemMange
         /// <param name="e"></param>
         private void panelTop_MouseMove(object sender, MouseEventArgs e)
         { 
-            
-             
             if (e.Button == MouseButtons.Left)
             {
                 this.Location = new Point(this.Location.X + e.X - mPoint.X, this.Location.Y + e.Y - mPoint.Y);
@@ -110,10 +99,8 @@ namespace BoxSystemMange
             }
         }
 
-
         private void zhuye_Load(object sender, EventArgs e)
         {
-
             init();
         }
 
@@ -144,6 +131,7 @@ namespace BoxSystemMange
             flowLayoutPanel6.Size = new Size(flowLayoutPanel6.Width + panel4.Width - 200, 350 * CalculateRowCount(flowLayoutPanel6));
 
             SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
+
         }
 
 
@@ -151,7 +139,6 @@ namespace BoxSystemMange
         {
 
         }
-
 
         private void zhuye_SizeChanged(object sender, EventArgs e)
         {
@@ -185,7 +172,6 @@ namespace BoxSystemMange
         {
 
         }
-
         private void pictureBox_Click(object sender, EventArgs e)
         {
 
@@ -195,17 +181,16 @@ namespace BoxSystemMange
                 originalAutoScrollMinSize.Y = -originalAutoScrollMinSize.Y;
             }
 
-
             panel11.Visible = false;
             panel5.AutoScroll = false;
 
 
-
             if (sender is PictureBox pictureBox)
             {
-                
-
-                zhuye.StaticNewIdentifier = pictureBox.Tag.ToString();
+                if (pictureBox != null)
+                {
+                    selectedGoodsID = pictureBox.Tag.ToString();
+                }
                 Tproducts t1 = new Tproducts();
                 Zichuangti(t1);
                 panel8.Visible = true;
@@ -399,9 +384,12 @@ namespace BoxSystemMange
             {
                 zhuyepanel.Visible = true;
                 zhuyepanel2.Visible = false;
+
+                panel8.Visible = true;
                 if (!Tproducts.isTproductsClosed)
                 {
-                    panel11.Visible = true;
+
+                    panel11.Visible = false;
                 }
                 button6ClickedOnce = true;
             }
@@ -409,7 +397,6 @@ namespace BoxSystemMange
             {
                 // 第一次点击时的操作
                 //MessageBox.Show(originalAutoScrollMinSize.ToString());
-               
 
                 zhuyepanel.Visible = false;
                 panel8.Visible = false;
@@ -683,19 +670,161 @@ namespace BoxSystemMange
 
         private void button19_Click(object sender, EventArgs e)
         {
+
+            if(Login.StrValue == "")
+            {
+                MessageBox.Show("请先登录");
+                return;
+            }
+
+
             panel8.Visible = false;
-            gundongtiao();
-            panel5.AutoScroll = false;
-            denglu();
-            SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
-            ShopCart t1 = new ShopCart();
-            Zichuangti(t1);
+
+            if (!string.IsNullOrEmpty(selectedGoodsID))
+            {
+                // 这里可以使用 selectedGoodsID 来执行你想要的操作
+                // 例如，将信息显示在 zhuyepanel2 面板上
+
+                //// 显示 zhuyepanel2 面板
+                //zhuyepanel.Visible = true;
+                ShopCart childForm = new ShopCart();
+
+                zhuyepanel2.BringToFront();
+                zhuyepanel2.Visible = true;
+                childForm.TopLevel = false;
+                childForm.Dock = DockStyle.Fill;
+                childForm.FormBorderStyle = FormBorderStyle.None;
+                zhuyeflow2.Controls.Add(childForm);
+                childForm.Show(); // 显示子窗体
+
+                // 关闭 zhuyeflow 面板中的其它子窗体
+                foreach (Control control in zhuyeflow2.Controls)
+                {
+                    if (control is Form form && form != childForm) // 确保不关闭当前添加的子窗体
+                    {
+                        form.Close();
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("No item selected.");
+            }
+
 
         }
 
         private void button22_Click(object sender, EventArgs e)
         {
+            if(Login.StrValue == "")
+            {
+                MessageBox.Show("请先登录");
+            }
+            else
+            {
+                UpdateZhuangtaiRecord(Login.StrValue, selectedGoodsID);
+            }
+            
 
+
+
+        }
+
+        public static string a1, b2, c3,f6;
+        public static int d4,e5;
+
+        public static bool UpdateZhuangtaiRecord(string Customerld, string Proid)
+        {
+            try
+            {
+                // 查询商品信息
+                string query = "SELECT * FROM Product_Table WHERE Goods_ID = '" + selectedGoodsID + "'";
+                DataTable result = DB.GetDataSet(query);
+                if (result.Rows.Count > 0)
+                {
+                    // 现有字段的处理
+                    a1 = result.Rows[0]["Goods_Name"].ToString();
+                    b2 = result.Rows[0]["Price"].ToString();
+                    c3 = result.Rows[0]["Unit_Price"].ToString();
+                    d4 = 1;
+                    e5 = Convert.ToInt32(result.Rows[0]["Stock_Quantity"]);
+                    f6 = result.Rows[0]["image"].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("没有找到记录。");
+                    return false;
+                }
+
+                // 检查购物车中是否已经存在相同的商品
+                string checkQuery = "SELECT * FROM CartItem WHERE Customerld = '" + Customerld + "' AND Proid = '" + Proid + "'";
+                DataTable checkResult = DB.GetDataSet(checkQuery);
+
+                // 使用GetCn方法获取数据库连接
+                SqlConnection connection = DB.GetCn();
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+
+                if (checkResult.Rows.Count > 0)
+                {
+                    // 更新现有记录的数量
+                    string updateQuery = "UPDATE CartItem SET Qty = Qty + 1 WHERE Customerld = @Customerld AND Proid = @Proid";
+                    SqlCommand command = new SqlCommand(updateQuery, connection);
+                    command.Parameters.AddWithValue("@Customerld", Customerld);
+                    command.Parameters.AddWithValue("@Proid", Proid);
+
+                    int result2 = command.ExecuteNonQuery();
+                    if (result2 > 0)
+                    {
+                        return true; // 更新成功
+                    }
+                    else
+                    {
+                        MessageBox.Show("没有行被更新。");
+                        return false; // 没有行被更新
+                    }
+                }
+                else
+                {
+                    // 插入新记录
+                    string insertQuery = "INSERT INTO CartItem (Customerld, Proid, ProName, ListPrice, Unprice, Qty, Stock_Quantity, image) " +
+                                         "VALUES (@Customerld, @Proid, @ProName, @ListPrice, @Unprice, @Qty, @Stock_Quantity, @image)";
+                    SqlCommand command = new SqlCommand(insertQuery, connection);
+                    command.Parameters.AddWithValue("@Customerld", Customerld);
+                    command.Parameters.AddWithValue("@Proid", Proid);
+                    command.Parameters.AddWithValue("@ProName", a1);
+                    command.Parameters.AddWithValue("@ListPrice", b2);
+                    command.Parameters.AddWithValue("@Unprice", c3);
+                    command.Parameters.AddWithValue("@Qty", d4);
+                    command.Parameters.AddWithValue("@Stock_Quantity", e5);
+                    command.Parameters.AddWithValue("@image", f6);
+
+                    int result2 = command.ExecuteNonQuery();
+                    if (result2 > 0)
+                    {
+                        return true; // 插入成功
+                    }
+                    else
+                    {
+                        MessageBox.Show("没有行被插入。");
+                        return false; // 没有行被插入
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // 处理异常
+                MessageBox.Show("操作失败：" + ex.Message);
+                return false;
+            }
+            finally
+            {
+                DB.cn.Close();
+                
+            }
         }
 
 
@@ -800,6 +929,11 @@ namespace BoxSystemMange
             t1.ShowDialog();
         }
 
+        private void button20_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -815,6 +949,48 @@ namespace BoxSystemMange
             SetFlowLayoutPanelHeightToContainInnerFlowLayout(flowLayoutPanel5);
 
 
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+
+            if (Login.StrValue == "")
+            {
+                MessageBox.Show("请先登录");
+            }
+            else
+            {
+                panel8.Visible = false;
+                if (!string.IsNullOrEmpty(selectedGoodsID))
+                {
+
+                    zhuyeinfo childForm = new zhuyeinfo();
+
+                    zhuyepanel2.BringToFront();
+                    zhuyepanel2.Visible = true;
+                    childForm.TopLevel = false;
+                    childForm.Dock = DockStyle.Fill;
+                    childForm.FormBorderStyle = FormBorderStyle.None;
+                    zhuyeflow2.Controls.Add(childForm);
+                    childForm.Show(); // 显示子窗体
+
+                    // 关闭 zhuyeflow 面板中的其它子窗体
+                    foreach (Control control in zhuyeflow2.Controls)
+                    {
+                        if (control is Form form && form != childForm) // 确保不关闭当前添加的子窗体
+                        {
+                            form.Close();
+                        }
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("No item selected.");
+                }
+            }
+
+           
         }
     }
 }

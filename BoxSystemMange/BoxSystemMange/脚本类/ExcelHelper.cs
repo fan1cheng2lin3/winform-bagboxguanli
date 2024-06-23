@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NPOI;
+using System.Windows.Forms;
 
 namespace BoxSystemMange.脚本类
 {
@@ -130,6 +131,7 @@ namespace BoxSystemMange.脚本类
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 return null;
             }
         }

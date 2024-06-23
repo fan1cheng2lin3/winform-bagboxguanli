@@ -36,11 +36,11 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -145,6 +145,34 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(3, 288);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(188, 52);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "定制管理";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(3, 346);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(188, 52);
+            this.button20.TabIndex = 9;
+            this.button20.Text = "社区管理";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(3, 404);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(188, 52);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "客服中心管理";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(3, 462);
@@ -164,33 +192,6 @@
             this.button8.Text = "日志管理";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(3, 404);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(188, 52);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "客服中心管理";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(3, 288);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(188, 52);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "定制管理";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button20
-            // 
-            this.button20.Location = new System.Drawing.Point(3, 346);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(188, 52);
-            this.button20.TabIndex = 9;
-            this.button20.Text = "社区管理";
-            this.button20.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 

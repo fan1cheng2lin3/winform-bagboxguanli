@@ -466,7 +466,7 @@ namespace BoxSystemMange
         {
             if (false)
             {
-                MessageBox.Show("商品名称，成本价格，库存,商品编号,类别不能为空");
+                
             }
             else
             {
@@ -634,8 +634,6 @@ namespace BoxSystemMange
                     drLog["action_date"] = DateTime.Now;
                     drLog["action_table"] = "product表";
                     ds.Tables["log_info"].Rows.Add(drLog);
-
-                    
 
                 }
             }
@@ -1144,7 +1142,6 @@ namespace BoxSystemMange
                 pictureBox1.Image = Image.FromFile(Application.StartupPath+ dgvPriduct.CurrentRow.Cells["image"].Value.ToString());
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 
-               
             }
             catch
             {

@@ -56,6 +56,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -87,6 +88,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BoxbagManageSystemDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="houtaicommunity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="houtaicommunity.Designer.cs">
+      <DependentUpon>houtaicommunity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubCart.Designer.cs">
+      <DependentUpon>SubCart.cs</DependentUpon>
     </Compile>
     <Compile Include="前端\community.cs">
       <SubType>Form</SubType>
@@ -182,7 +195,19 @@
       <DependentUpon>Select_Log.cs</DependentUpon>
     </Compile>
     <Compile Include="脚本类\AutoAdaptWindowsSize.cs" />
+    <Compile Include="脚本类\CartItemsv.cs" />
+    <Compile Include="脚本类\DataClasses1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </Compile>
     <Compile Include="脚本类\ExcelHelper.cs" />
+    <EmbeddedResource Include="houtaicommunity.resx">
+      <DependentUpon>houtaicommunity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubCart.resx">
+      <DependentUpon>SubCart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="前端\community.resx">
       <DependentUpon>community.cs</DependentUpon>
     </EmbeddedResource>
@@ -238,6 +263,9 @@
     <EmbeddedResource Include="管理\Select_Log.resx">
       <DependentUpon>Select_Log.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="脚本类\DataClasses1.dbml.layout">
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </None>
     <None Include="BoxbagManageSystemDataSet1.xsc">
       <DependentUpon>BoxbagManageSystemDataSet1.xsd</DependentUpon>
     </None>
@@ -292,6 +320,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="脚本类\DataClasses1.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -365,6 +398,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

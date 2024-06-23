@@ -66,7 +66,7 @@ namespace BoxSystemMange
 
             DB.GetCn();
             // 使用DB类中的GetDataSet方法来获取数据
-            string sql = "SELECT * FROM Product_Table WHERE Goods_ID = '" + zhuye.StaticNewIdentifier + "'";
+            string sql = "SELECT * FROM Product_Table WHERE Goods_ID = '" + zhuye.selectedGoodsID + "'";
             DataTable dt = DB.GetDataSet(sql);
 
             // 检查DataTable是否有数据
@@ -76,26 +76,16 @@ namespace BoxSystemMange
                 DataRow row = dt.Rows[0];
 
                 // 更新控件文本，并处理<br>标签
-                label9.Text = "￥" + AutoWrapText(row["Price"].ToString(), 13);
+                label9.Text = "￥" + AutoWrapText(row["Price"].ToString().Remove(row["Price"].ToString().Length - 2, 2),13);
                 label9.AutoSize = true;
                 label9.Font = new Font(label9.Font.FontFamily, 36, FontStyle.Bold);
                 label9.ForeColor = Color.Red;
                 label9.BackColor = Color.Transparent;
 
-
                 label10.Text = AutoWrapText(row["Goods_Name"].ToString(), 13);
 
 
-
-                //label4.Text = AutoWrapText(row["label3"].ToString(), 13);
-                //string a = row["im1"].ToString();
-                //pictureBox1.Image = System.Drawing.Image.FromFile(a);
-
-                //string b = row["im2"].ToString();
-                //pictureBox2.Image = System.Drawing.Image.FromFile(b);
-
-                //string c = row["im3"].ToString();
-                //pictureBox3.Image = System.Drawing.Image.FromFile(c);
+                
 
             }
             else

@@ -94,5 +94,12 @@ namespace BoxSystemMange.管理
             departmentguanli t1 = new departmentguanli();
             Zichuangti(t1);
         }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            panel3.Visible = false;
+            houtaicommunity t1 = new houtaicommunity();
+            Zichuangti(t1);
+        }
     }
 }
