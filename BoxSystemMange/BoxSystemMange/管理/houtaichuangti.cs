@@ -1,4 +1,5 @@
 ﻿using BoxSystemMange.脚本类;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -407,7 +408,7 @@ namespace BoxSystemMange
                     BorderStyle = BorderStyle.FixedSingle
                 };
                 newPictureBox.MouseClick += new MouseEventHandler(PictureBox_MouseClick);
-                // 将PictureBox添加到flowLayoutPanel2中
+                // 将PictureBox添加到flowLayoutPanel3中
                 flowLayoutPanel3.Controls.Add(newPictureBox);
                 newPictureBox.Dock = DockStyle.Top;
 
@@ -442,36 +443,129 @@ namespace BoxSystemMange
                 newPictureBox.Tag = dbImagePath;
             }
 
-
-            //if (!aaa)
-            //{
-                
-            //}
-            //else
-            //{
-            //    for (int i = flowLayoutPanel3.Controls.Count - 1; i >= 0; i--)
-            //    {
-            //        // 如果控件是PictureBox类型，则移除它
-            //        if (flowLayoutPanel3.Controls[i] is PictureBox)
-            //        {
-            //            flowLayoutPanel3.Controls.RemoveAt(i);
-            //        }
-            //    }
-
-            //    aaa = false;
-            //}
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            if (false)
+            if (!daoru)
             {
-                
+                if (textBox13.Text == "" || textBox10.Text == "" || textBox9.Text == "" || textBox8.Text == "" || comboBox4.Text == "")
+                {
+                    MessageBox.Show("必填不能为空");
+                }
+                else
+                {
+                    DB.GetCn();
+                    string str = "select * from Product_Table where Goods_ID ='" + textBox13.Text + "'";
+                    DataTable dt = DB.GetDataSet(str);
+                    if (dt.Rows.Count > 0)
+                    {
+                        MessageBox.Show("此商品已存在，请重新输入编号");
+                        return;
+                    }
+                    else
+                    {
+                        string filename;
+                        string uniqueFolder;
+                        filename = Path.GetFileName(path_source);
+                        string dateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+                        filename = dateTime + filename;
+                        uniqueFolder = Directory.GetCurrentDirectory() + "\\Prod_Images\\" + dateTime;
+
+                        DataRow drPro = ds.Tables["product_info"].NewRow();
+                        drPro["Goods_ID"] = int.Parse(textBox13.Text);
+                        drPro["Classification_ID"] = comboBox4.SelectedValue;
+                        drPro["Unit_Price"] = decimal.Parse(textBox11.Text);
+                        drPro["Price"] = decimal.Parse(textBox10.Text);
+                        drPro["Supplier_ID"] = comboBox3.SelectedValue;
+                        drPro["Goods_Name"] = textBox9.Text;
+                        drPro["decs"] = textBox7.Text;
+                        drPro["Stock_Quantity"] = textBox8.Text;
+                        drPro["leixing"] = 4;
+
+                        // 遍历flowLayoutPanel3中的PictureBox，并将Tag中的路径赋给im1, im2, im3, im4, im5字段
+                        int imageIndex = 1;
+                        foreach (Control ctrl in flowLayoutPanel3.Controls)
+                        {
+                            if (ctrl is PictureBox pictureBox)
+                            {
+                                string tagValue = pictureBox.Tag.ToString();
+                                switch (imageIndex)
+                                {
+                                    case 1:
+                                        drPro["im1"] = tagValue;
+                                        break;
+                                    case 2:
+                                        drPro["im2"] = tagValue;
+                                        break;
+                                    case 3:
+                                        drPro["im3"] = tagValue;
+                                        break;
+                                    case 4:
+                                        drPro["im4"] = tagValue;
+                                        break;
+                                    case 5:
+                                        drPro["im5"] = tagValue;
+                                        break;
+                                }
+                                imageIndex++;
+                                if (imageIndex > 5) break; // 只处理前5个图片
+                            }
+                        }
+
+
+                        CopyImageAndSetDataRow(path_source2, uniqueFolder, drPro, "image", "780.jpg");
+                        CopyImageAndSetDataRow(path_sourceye1, uniqueFolder, drPro, "ye1", "NULL");
+                        CopyImageAndSetDataRow(path_sourceye2, uniqueFolder, drPro, "ye2", "NULL");
+                        CopyImageAndSetDataRow(path_sourceye3, uniqueFolder, drPro, "ye3", "NULL");
+                        CopyImageAndSetDataRow(path_sourceye4, uniqueFolder, drPro, "ye4", "NULL");
+                        CopyImageAndSetDataRow(path_sourceye5, uniqueFolder, drPro, "ye5", "NULL");
+                        CopyImageAndSetDataRow(path_sourceye6, uniqueFolder, drPro, "ye6", "NULL");
+
+                        ds.Tables["product_info"].Rows.Add(drPro);
+
+                        DataRow drLog = ds.Tables["log_info"].NewRow();
+                        drLog["username"] = Login.StrValue;
+                        drLog["type"] = "添加";
+                        drLog["action_date"] = DateTime.Now;
+                        drLog["action_table"] = "product表";
+                        ds.Tables["log_info"].Rows.Add(drLog);
+                        daoru = false;
+                        try
+                        {
+                            SqlCommandBuilder dbProuct = new SqlCommandBuilder(daProduct);
+                            daProduct.Update(ds, "product_info");
+                            SqlCommandBuilder dbLog = new SqlCommandBuilder(daLog);
+                            daLog.Update(ds, "log_info");
+                            MessageBox.Show("增加成功");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        DB.cn.Close();
+                    }
+                }
             }
             else
             {
                 DB.GetCn();
-                DataTable dataTable = (DataTable)dataGridView1.DataSource;
+                DataTable dataTable = null;
+
+                if (dataGridView1.DataSource is DataTable)
+                {
+                    dataTable = (DataTable)dataGridView1.DataSource;
+                }
+                else if (dataGridView1.DataSource is DataView)
+                {
+                    dataTable = ((DataView)dataGridView1.DataSource).Table;
+                }
+
+                if (dataTable == null)
+                {
+                    MessageBox.Show("数据源无效");
+                    return;
+                }
 
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
@@ -480,13 +574,12 @@ namespace BoxSystemMange
                     DataTable dt = DB.GetDataSet(str);
                     if (dt.Rows.Count > 0)
                     {
-                        MessageBox.Show("商品编号 " + goodsID + " 已存在，请重新输入编号");
-                        continue;
+                        showAll();
+                        MessageBox.Show("商品编号 " + goodsID + " 已存在，请重新修改表编号");
+                        
+                        return; // 跳过当前行，继续处理后续行
                     }
 
-                    string dateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
-                    string uniqueFolder = Directory.GetCurrentDirectory() + "\\Prod_Images\\" + dateTime;
-                    Directory.CreateDirectory(uniqueFolder);
 
                     DataRow drPro = ds.Tables["product_info"].NewRow();
                     drPro["Goods_ID"] = int.Parse(dataRow["Goods_ID"].ToString());
@@ -495,16 +588,19 @@ namespace BoxSystemMange
                     drPro["Price"] = decimal.Parse(dataRow["Price"].ToString());
                     drPro["Supplier_ID"] = dataRow["Supplier_ID"];
                     drPro["Goods_Name"] = dataRow["Goods_Name"].ToString();
-                    drPro["Stock_Quantity"] = dataRow["Stock_Quantity"].ToString();
+                    drPro["image"] = dataRow["image"].ToString();
+                    drPro["im1"] = dataRow["im1"].ToString();
+                    drPro["im2"] = dataRow["im2"].ToString();
+                    drPro["im3"] = dataRow["im3"].ToString();
+                    drPro["im4"] = dataRow["im4"].ToString();
+                    drPro["im5"] = dataRow["im5"].ToString();
+                    drPro["ye1"] = dataRow["ye1"].ToString();
+                    drPro["ye2"] = dataRow["ye2"].ToString();
+                    drPro["ye3"] = dataRow["ye3"].ToString();
+                    drPro["ye4"] = dataRow["ye4"].ToString();
+                    drPro["ye5"] = dataRow["ye5"].ToString();
+                    drPro["ye6"] = dataRow["ye6"].ToString();
                     drPro["leixing"] = 4;
-
-                    CopyImageAndSetDataRow(path_source2, uniqueFolder, drPro, "image", "780.jpg");
-                    CopyImageAndSetDataRow(path_sourceye1, uniqueFolder, drPro, "ye1", "NULL");
-                    CopyImageAndSetDataRow(path_sourceye2, uniqueFolder, drPro, "ye2", "NULL");
-                    CopyImageAndSetDataRow(path_sourceye3, uniqueFolder, drPro, "ye3", "NULL");
-                    CopyImageAndSetDataRow(path_sourceye4, uniqueFolder, drPro, "ye4", "NULL");
-                    CopyImageAndSetDataRow(path_sourceye5, uniqueFolder, drPro, "ye5", "NULL");
-                    CopyImageAndSetDataRow(path_sourceye6, uniqueFolder, drPro, "ye6", "NULL");
 
                     ds.Tables["product_info"].Rows.Add(drPro);
 
@@ -515,9 +611,11 @@ namespace BoxSystemMange
                     drLog["action_table"] = "product表";
                     ds.Tables["log_info"].Rows.Add(drLog);
                 }
+
                 showXz();
                 init();
                 showAll();
+
                 try
                 {
                     SqlCommandBuilder dbProuct = new SqlCommandBuilder(daProduct);
@@ -532,7 +630,11 @@ namespace BoxSystemMange
                 }
                 DB.cn.Close();
             }
+
         }
+
+
+
 
         public void CopyImageAndSetDataRow(string pathSource, string fileFolder, DataRow drPro, string imageColumnName,string defaultImagePath)
         {
@@ -861,8 +963,12 @@ namespace BoxSystemMange
             }
         }
 
+
+
+        public bool daoru = false;
         private void button14_Click(object sender, EventArgs e)
         {
+            daoru = true;
             OpenFileDialog openFile = new OpenFileDialog();
             if (openFile.ShowDialog() == DialogResult.OK)
             {
@@ -875,8 +981,7 @@ namespace BoxSystemMange
                 }
                 else
                 {
-
-                    if(dataGridView1.Rows.Count == 0)
+                    if (dataGridView1.Rows.Count == 0)
                     {
                         // 如果 dataGridView1 为空，直接导入数据
                         dataGridView1.DataSource = excelDt;
@@ -888,30 +993,50 @@ namespace BoxSystemMange
                         if (result == DialogResult.Yes)
                         {
                             // 清空现有数据
+                            ClearDatabaseTable("Product_Table");
                             dataGridView1.DataSource = null;
-                            dataGridView1.Rows.Clear();
-                            dataGridView1.Columns.Clear();
                             dataGridView1.DataSource = excelDt;
                         }
                         else if (result == DialogResult.No)
                         {
                             // 在已有数据基础上追加数据
-                            DataTable currentDt = (DataTable)dataGridView1.DataSource;
-                            if (currentDt == null)
+                            DataTable currentTable = null;
+                            if (dataGridView1.DataSource is DataTable)
                             {
-                                dataGridView1.DataSource = excelDt;
+                                currentTable = (DataTable)dataGridView1.DataSource;
                             }
-                            else
+                            else if (dataGridView1.DataSource is DataView)
+                            {
+                                currentTable = ((DataView)dataGridView1.DataSource).Table;
+                            }
+
+                            if (currentTable != null)
                             {
                                 foreach (DataRow row in excelDt.Rows)
                                 {
-                                    currentDt.ImportRow(row);
+                                    currentTable.ImportRow(row);
                                 }
+                                dataGridView1.DataSource = currentTable;
                             }
                         }
                     }
-                   
                 }
+            }
+        }
+
+        private void ClearDatabaseTable(string tableName)
+        {
+            try
+            {
+                DB.GetCn();
+                string query = $"DELETE FROM {tableName}";
+                SqlCommand cmd = new SqlCommand(query, DB.cn);
+                cmd.ExecuteNonQuery();
+                DB.cn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("清空数据库表时发生错误：" + ex.Message);
             }
         }
 
@@ -1093,47 +1218,60 @@ namespace BoxSystemMange
             ass = "";
             b = "";
 
-            if (Convert.ToInt32(dgvPriduct.CurrentRow.Cells["leixing"].Value) == 4)
-            {
-                button23.BackColor = Color.White;
-                button24.BackColor = Color.White;
-                aa = true;
-                bb = true;
-                c = "";
-                ass = "";
-                b = "";
-            }
-            else if (Convert.ToInt32(dgvPriduct.CurrentRow.Cells["leixing"].Value) == 5)
-            {
-                button23.BackColor = Color.FromArgb(135, 206, 235);
-                button24.BackColor = Color.White;
-                aa = false;
-                bb = true;
-                c = "";
-                ass = "促销";
-                b = "";
-            }
-            else if (Convert.ToInt32(dgvPriduct.CurrentRow.Cells["leixing"].Value) == 6)
-            {
-                button24.BackColor = Color.FromArgb(135, 206, 235);
-                button23.BackColor = Color.White;
-                aa = true;
-                bb = false;
-                c = "";
-                ass = "";
-                b = "推荐";
-            }
-            else if (Convert.ToInt32(dgvPriduct.CurrentRow.Cells["leixing"].Value) == 7)
-            {
-                button23.BackColor = Color.FromArgb(135, 206, 235);
-                button24.BackColor = Color.FromArgb(135, 206, 235);
-                aa = false;
-                bb = false;
-                c = "促销推荐";
-                ass = "";
-                b = "";
-            }
 
+            int leixing = dgvPriduct.CurrentRow.Cells["leixing"].Value != DBNull.Value
+        ? Convert.ToInt32(dgvPriduct.CurrentRow.Cells["leixing"].Value)
+        : 4;
+
+            switch (leixing)
+            {
+                case 4:
+                    button23.BackColor = Color.White;
+                    button24.BackColor = Color.White;
+                    aa = true;
+                    bb = true;
+                    c = "";
+                    ass = "";
+                    b = "";
+                    break;
+                case 5:
+                    button23.BackColor = Color.FromArgb(135, 206, 235);
+                    button24.BackColor = Color.White;
+                    aa = false;
+                    bb = true;
+                    c = "";
+                    ass = "促销";
+                    b = "";
+                    break;
+                case 6:
+                    button24.BackColor = Color.FromArgb(135, 206, 235);
+                    button23.BackColor = Color.White;
+                    aa = true;
+                    bb = false;
+                    c = "";
+                    ass = "";
+                    b = "推荐";
+                    break;
+                case 7:
+                    button23.BackColor = Color.FromArgb(135, 206, 235);
+                    button24.BackColor = Color.FromArgb(135, 206, 235);
+                    aa = false;
+                    bb = false;
+                    c = "促销推荐";
+                    ass = "";
+                    b = "";
+                    break;
+                default:
+                    // 默认情况，如果没有匹配的值
+                    button23.BackColor = Color.White;
+                    button24.BackColor = Color.White;
+                    aa = true;
+                    bb = true;
+                    c = "";
+                    ass = "";
+                    b = "";
+                    break;
+            }
 
 
             // 设置主图片

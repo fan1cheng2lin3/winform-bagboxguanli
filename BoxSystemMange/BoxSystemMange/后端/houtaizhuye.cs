@@ -56,6 +56,7 @@ namespace BoxSystemMange.管理
             childForm.TopLevel = false; // 设置子窗体为非顶层窗体
             childForm.Dock = DockStyle.Fill; // 让子窗体填充整个面板
             childForm.FormBorderStyle = FormBorderStyle.None; // 可选：去除子窗体的边框
+            childForm.WindowState = FormWindowState.Maximized;
             flowLayoutPanel2.Controls.Add(childForm); // 将子窗体添加到面板中
             childForm.Show(); // 显示子窗体
 
@@ -99,6 +100,13 @@ namespace BoxSystemMange.管理
         {
             panel3.Visible = false;
             houtaicommunity t1 = new houtaicommunity();
+            Zichuangti(t1);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            panel3.Visible = false;
+            houtaidingdan t1 = new houtaidingdan();
             Zichuangti(t1);
         }
     }

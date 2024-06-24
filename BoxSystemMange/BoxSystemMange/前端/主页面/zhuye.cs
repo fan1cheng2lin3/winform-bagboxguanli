@@ -270,11 +270,25 @@ namespace BoxSystemMange
                 string labelText1 = row["Price"].ToString().Replace("<br>", Environment.NewLine);
                 label1.Text = "￥" + labelText1;
                 label1.AutoSize = true;
-                label1.Font = new Font(label1.Font.FontFamily, 18, FontStyle.Bold);
+                label1.Font = new Font(label1.Font.FontFamily, 14, FontStyle.Bold);
                 label1.ForeColor = Color.Red;
                 label1.BackColor = Color.Transparent;
                 label1.Location = new Point(5, 205);
                 imagePanel.Controls.Add(label1);
+
+                Label label2 = new Label();
+                string labelText2 = row["Goods_Name"].ToString().Replace("<br>", Environment.NewLine);
+                label2.Text = labelText2;
+                label2.AutoSize = true;
+                label2.Font = new Font(label2.Font.FontFamily, 16, FontStyle.Bold);
+                label2.ForeColor = Color.Black;
+                label2.BackColor = Color.Transparent;
+                label2.Location = new Point(10, 235);
+                imagePanel.Controls.Add(label2);
+
+
+
+
                 // 添加到flowLayoutPanel
                 flowLayoutPanel.Controls.Add(panel1);
             }

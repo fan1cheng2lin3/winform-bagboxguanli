@@ -214,7 +214,7 @@ namespace BoxSystemMange.前端.主页面
             DB.GetCn();
             string str = "insert into Order_Table values('" + Login.StrValue + "','" + DateTime.Today + "','" + textBox3.Text  + "','"
                 + comboBox1.Text + "','" + textBox1.Text + "','" + textBox2.Text + "','" + textBox4.Text + "','"
-                + textBox6.Text + "','待发货', null)";// ShopCart.profit +
+                + textBox6.Text + "','待发货', null,null,NULL)";// ShopCart.profit +
             //UpdateStockQuantity();
             //ShopCart.profit = 0;
             DB.sqlEx(str);
