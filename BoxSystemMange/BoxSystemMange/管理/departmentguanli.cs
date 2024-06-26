@@ -22,7 +22,7 @@ namespace BoxSystemMange.管理
 
         private void departmentguanli_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(houtaidenglu.StrValue);
+            
             tabControl1.TabPages[0].Text = "增加部门信息";
             tabControl1.TabPages[1].Text = "修改部门信息";
             tabControl1.TabPages[2].Text = "删除部门信息";
@@ -194,7 +194,7 @@ namespace BoxSystemMange.管理
                     cmd.Parameters.Add(new SqlParameter("action_table", SqlDbType.NVarChar));
 
                     cmd.Parameters["username"].Value = houtaidenglu.StrValue;
-                    MessageBox.Show(houtaidenglu.StrValue);
+                   
                     cmd.Parameters["type"].Value = "修改";
                     cmd.Parameters["action_date"].Value = DateTime.Now;
                     cmd.Parameters["action_table"].Value = "bumenbiao";

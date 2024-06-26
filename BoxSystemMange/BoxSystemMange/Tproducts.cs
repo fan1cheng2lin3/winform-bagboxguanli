@@ -20,7 +20,6 @@ namespace BoxSystemMange
         }
 
        
-
         public string AutoWrapText(string text, int maxCharsPerLine)
         {
             StringBuilder wrappedText = new StringBuilder();
@@ -53,27 +52,6 @@ namespace BoxSystemMange
             }
 
             return wrappedText.ToString();
-        }
-
-
-        private void SetFlowLayoutPanelHeightToContainInnerFlowLayout(Panel outerFlowLayout,string woa)
-        {
-            // 确保外层FlowLayoutPanel中有控件
-            if (outerFlowLayout.Controls.Count > 0)
-            {
-                // 获取最后一个控件，假设是flowLayoutPanel6
-                Control innerFlowLayout = outerFlowLayout.Controls[outerFlowLayout.Controls.Count - 1];
-
-                // 检查是否是我们要找的flowLayoutPanel6
-                if (innerFlowLayout is FlowLayoutPanel && innerFlowLayout.Name == woa)
-                {
-                    // 计算所需的高度：flowLayoutPanel6的Y坐标加上其高度
-                    int requiredHeight = innerFlowLayout.Location.Y + innerFlowLayout.Height;
-
-                    // 设置外层FlowLayoutPanel的高度
-                    outerFlowLayout.Height = requiredHeight;
-                }
-            }
         }
 
 
@@ -220,8 +198,9 @@ namespace BoxSystemMange
                     flowLayoutPanel4.Controls.Add(pictureBox9);
                     flowLayoutPanel4.Controls.Add(pictureBox10);
                     flowLayoutPanel4.Controls.Add(pictureBox11);
-
                     
+
+
 
 
                 }
@@ -275,11 +254,7 @@ namespace BoxSystemMange
             flowLayoutPanel1.Size = new Size(flowLayoutPanel1.Width, a * CalculateRowCount(flowLayoutPanel1));
         }
 
-        public void daxiao2(FlowLayoutPanel flowLayoutPanel1, int a)
-        {
-            // 重新计算行数并调整大小
-            flowLayoutPanel1.Size = new Size(a * CalculateRowCount(flowLayoutPanel1),flowLayoutPanel1.Width);
-        }
+
 
         public static bool isTproductsClosed = true;
         private void Tproducts_FormClosed(object sender, FormClosedEventArgs e)
@@ -326,10 +301,7 @@ namespace BoxSystemMange
            
         }
 
-        private void ResizePictureBoxes()
-        {
-            
-        }
+     
 
         private void flowLayoutPanel4_Paint(object sender, PaintEventArgs e)
         {

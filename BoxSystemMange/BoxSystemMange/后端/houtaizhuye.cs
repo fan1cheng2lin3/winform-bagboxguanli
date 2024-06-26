@@ -109,5 +109,12 @@ namespace BoxSystemMange.管理
             houtaidingdan t1 = new houtaidingdan();
             Zichuangti(t1);
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            panel3.Visible = false;
+            houtaixinxi t1 = new houtaixinxi();
+            Zichuangti(t1);
+        }
     }
 }

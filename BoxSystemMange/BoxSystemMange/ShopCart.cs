@@ -312,7 +312,7 @@ namespace BoxSystemMange
             }
 
             // 清空结账后的购物车
-            
+            panel1.Visible = false;
             MessageBox.Show("已经结算咯");
         }
 

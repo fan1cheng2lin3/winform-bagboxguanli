@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPOI.SS.Formula.Functions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,38 +14,81 @@ namespace BoxSystemMange
 {
     public partial class dindan : Form
     {
+
+        private List<Button> ratingButtons;
+        private int totalClicks;
+        private int positiveClicks;
+        private float haopinglv;
+        private int Goods_ID;
+        public static string a1, b2, c3, f6;
+
         public dindan()
         {
             InitializeComponent();
+            InitializeRatingButtons();
+            InitializeButtons();
         }
 
-
-        public void Zichuangti(Form childForm)
+        private void InitializeRatingButtons()
         {
-            // 假设 panel5 和 zhuyepanel 是已经定义好的控件
+            this.ratingButtons = new List<Button>();
+            for (int i = 0; i < 5; i++)
+            {
+                var button = new Button();
+                button.Name = "button" + (i + 1);
+                button.Text = (i + 1).ToString();
+                button.Size = new System.Drawing.Size(50, 50);
+                button.Location = new System.Drawing.Point(10 + i * 60, 10);
+                button.Click += new EventHandler(RatingButton_Click);
+                this.ratingButtons.Add(button);
+                this.panel4.Controls.Add(button);
+            }
 
-            //panel5.AutoScrollPosition = new Point(0, 0);
-
-            //flowLayoutPanel5.Height = 1500;
-            //zhuyepanel.BringToFront();
-            //zhuyepanel.Visible = true;
-            //// childForm 是函数参数，代表要添加的子窗体
-            //childForm.TopLevel = false; // 设置子窗体为非顶层窗体
-            //childForm.Dock = DockStyle.Fill; // 让子窗体填充整个面板
-            //childForm.FormBorderStyle = FormBorderStyle.None; // 可选：去除子窗体的边框
-            //zhuyeflow.Controls.Add(childForm); // 将子窗体添加到面板中
-            //childForm.Show(); // 显示子窗体
-
-            //// 关闭 zhuyeflow 面板中的其它子窗体
-            //foreach (Control control in zhuyeflow.Controls)
-            //{
-            //    if (control is Form form && form != childForm) // 确保不关闭当前添加的子窗体
-            //    {
-            //        form.Close();
-            //    }
-            //}
+            ResetButtons();
         }
-       
+
+        private void ResetButtons()
+        {
+            totalClicks = 0;
+            positiveClicks = 0;
+            haopinglv = 0;
+            UpdateButtons(0); // 重置按钮颜色
+        }
+
+        private void InitializeButtons()
+        {
+            totalClicks = 0;
+            positiveClicks = 0;
+            UpdateButtons(0);
+        }
+
+        private void RatingButton_Click(object sender, EventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            int index = ratingButtons.IndexOf(clickedButton) + 1;
+            UpdateButtons(index);
+
+            totalClicks++;
+            positiveClicks += index;
+
+            haopinglv = (float)positiveClicks / (totalClicks * 5);
+        }
+
+
+        private void UpdateButtons(int numberOfButtonsToHighlight)
+        {
+            for (int i = 0; i < ratingButtons.Count; i++)
+            {
+                if (i < numberOfButtonsToHighlight)
+                {
+                    ratingButtons[i].BackColor = System.Drawing.Color.Yellow;
+                }
+                else
+                {
+                    ratingButtons[i].BackColor = System.Drawing.Color.LightGray;
+                }
+            }
+        }
 
         private void LoadDataFromDatabase4(FlowLayoutPanel flowLayoutPanel, string status = "")
         {
@@ -85,7 +129,7 @@ namespace BoxSystemMange
                 string labelText1 = row["productname"].ToString().Replace("<br>", Environment.NewLine);
                 label1.Text = labelText1;
                 label1.AutoSize = true;
-                label1.Font = new Font(label1.Font.FontFamily, 18, FontStyle.Bold);
+                label1.Font = new Font(label1.Font.FontFamily, 12, FontStyle.Bold);
                 label1.ForeColor = Color.Red;
                 label1.BackColor = Color.Transparent;
                 label1.Location = new Point(5, 205);
@@ -130,7 +174,7 @@ namespace BoxSystemMange
 
                         Button btnConfirmReceipt = new Button();
                         btnConfirmReceipt.Text = "确认收货";
-                        btnConfirmReceipt.Click += (s, e) => ConfirmReceipt(orderDate, currentProductId);
+                        btnConfirmReceipt.Click += (s, e) => ConfirmReceipt(orderDate, currentProductId,Convert.ToInt32(row["Qty"]));
                         btnConfirmReceipt.Location = new Point(100, buttonY);
 
                         // 根据订单状态2决定是否隐藏确认收货按钮
@@ -163,14 +207,19 @@ namespace BoxSystemMange
 
                         Button btnReviewOrder = new Button();
                         btnReviewOrder.Text = "评价";
-                        btnReviewOrder.Click += (s, e) => ReviewOrder(orderDate); // 传递当前订单日期
+                        btnReviewOrder.Click += (s, e) => ReviewOrder(currentProductId); // 传递当前订单日期
                         btnReviewOrder.Location = new Point(100, buttonY);
+
+
+                        
                         panel1.Controls.Add(btnReviewOrder);
 
                         Button btnReorder = new Button();
                         btnReorder.Text = "再次购买";
                         btnReorder.Click += (s, e) => UpdateZhuangtaiRecord(Login.StrValue, currentProductId); // 传递当前订单日期
                         btnReorder.Location = new Point(55, buttonY + 30);
+
+
                         panel1.Controls.Add(btnReorder);
                         break;
 
@@ -185,8 +234,27 @@ namespace BoxSystemMange
                         btnRepurchase.Text = "重新购买";
                         btnRepurchase.Click += (s, e) => UpdateZhuangtaiRecord(Login.StrValue, currentProductId); // 传递当前订单日期
                         btnRepurchase.Location = new Point(100, buttonY);
+
+
+                        
+
+
+
+
+
+
+
                         panel1.Controls.Add(btnRepurchase);
+
+
+
+
                         break;
+
+
+
+
+
 
                     default:
                         // 全部订单不需要额外按钮处理
@@ -221,6 +289,8 @@ namespace BoxSystemMange
                 MessageBox.Show($"撤回申请失败：{ex.Message}");
             }
         }
+
+
         private void WithdrawReturnOrder(string orderDate, string productId)
         {
             DB.GetCn();
@@ -238,7 +308,6 @@ namespace BoxSystemMange
                 MessageBox.Show($"撤回申请失败：{ex.Message}");
             }
         }
-
 
 
 
@@ -261,14 +330,17 @@ namespace BoxSystemMange
             }
         }
 
-        private void ConfirmReceipt(string orderDate, string productId)
+        private void ConfirmReceipt(string orderDate, string productId,int xiaoliang)
         {
             DB.GetCn();
             string sql = $"UPDATE Order_Table SET Status = '已收货' WHERE OrderDate = '{orderDate}' and productID = '{productId}'";
-
+            string sql2 = $"UPDATE Product_Table SET xiaoliang = xiaoliang + {xiaoliang}, Stock_Quantity = Stock_Quantity -{xiaoliang} WHERE Goods_ID = '{productId}'";
+           
             try
             {
                 DB.sqlEx(sql);
+                DB.GetCn();
+                DB.sqlEx(sql2);
                 MessageBox.Show("订单已成功确认收货。");
 
                 LoadDataFromDatabase4(flowLayoutPanel1, "待发货");// 重新加载当前订单列表
@@ -277,6 +349,8 @@ namespace BoxSystemMange
             {
                 MessageBox.Show($"确认收货失败：{ex.Message}");
             }
+
+            DB.cn.Close();
         }
 
 
@@ -302,15 +376,41 @@ namespace BoxSystemMange
             }
         }
 
-        private void ReviewOrder(object orderId)
+        private void ReviewOrder(object Proid)
         {
+            panel3.Visible = true;
+            DB.GetCn();
+            // 查询商品信息
+            string query = "SELECT * FROM Product_Table WHERE Goods_ID = '" + Proid + "'";
+
+            DataTable result = DB.GetDataSet(query);
+            try
+            {
+                Goods_ID = Convert.ToInt32(result.Rows[0]["Goods_ID"]);
+            }
+            catch 
+            {
+                DB.GetCn();
+                string sql = $"DELETE FROM Order_Table WHERE  productID = '{Proid}'";
+                try
+                {
+                    DB.sqlEx(sql);
+                    MessageBox.Show("商品已经删除了，订单已删除。");
+
+                    // 刷新订单列表
+                    LoadDataFromDatabase4(flowLayoutPanel1, "已收货");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"收货失败，删除订单失败：{ex.Message}");
+                }
+            }
+            
+           
+
             // 评价逻辑
         }
 
-        private void Reorder(object orderId)
-        {
-            // 再次购买逻辑
-        }
 
         private void DeleteOrder(string orderDate, string productId)
         {
@@ -352,12 +452,41 @@ namespace BoxSystemMange
             LoadDataFromDatabase4(flowLayoutPanel1, "已取消");
         }
 
+        
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DB.GetCn();
+
+            string sql = $"UPDATE Product_Table SET haopinglv = (haopinglv + {haopinglv}) / 2  WHERE Goods_ID = '{Goods_ID}'";
+
+            try
+            { 
+                
+                panel3.Visible = false;
+                DB.sqlEx(sql);
+                MessageBox.Show("已成功评价。");
+                ResetButtons(); // 提交后重置按钮状态
 
 
-        public static string a1, b2, c3, f6;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"评价失败：{ex.Message}");
+            }
+
+
+        }
+
         public static int d4, e5;
 
 
+        /// <summary>
+        /// 重新购买
+        /// </summary>
+        /// <param name="Customerld"></param>
+        /// <param name="Proid"></param>
+        /// <returns></returns>
         public static bool UpdateZhuangtaiRecord(string Customerld, string Proid)
         {
             try
@@ -429,6 +558,7 @@ namespace BoxSystemMange
                     int result2 = command.ExecuteNonQuery();
                     if (result2 > 0)
                     {
+                        MessageBox.Show("已重新加入购物车");
                         return true; // 插入成功
                     }
                     else
@@ -450,5 +580,8 @@ namespace BoxSystemMange
 
             }
         }
+
+
+
     }
 }

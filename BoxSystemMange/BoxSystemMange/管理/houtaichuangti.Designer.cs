@@ -127,7 +127,6 @@
             this.designshi_TableTableAdapter = new BoxSystemMange.BoxbagManageSystemDataSet3TableAdapters.Designshi_TableTableAdapter();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.fggToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fgToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -552,7 +551,7 @@
             // 
             // textBox9
             // 
-            this.textBox9.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Bold);
+            this.textBox9.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
             this.textBox9.Location = new System.Drawing.Point(120, 121);
             this.textBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox9.Multiline = true;
@@ -1196,24 +1195,17 @@
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fggToolStripMenuItem,
-            this.fgToolStripMenuItem});
+            this.fggToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(104, 52);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 56);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // fggToolStripMenuItem
             // 
             this.fggToolStripMenuItem.Name = "fggToolStripMenuItem";
-            this.fggToolStripMenuItem.Size = new System.Drawing.Size(103, 24);
-            this.fggToolStripMenuItem.Text = "fgg";
+            this.fggToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.fggToolStripMenuItem.Text = "删除全部";
             this.fggToolStripMenuItem.Click += new System.EventHandler(this.fggToolStripMenuItem_Click);
-            // 
-            // fgToolStripMenuItem
-            // 
-            this.fgToolStripMenuItem.Name = "fgToolStripMenuItem";
-            this.fgToolStripMenuItem.Size = new System.Drawing.Size(103, 24);
-            this.fgToolStripMenuItem.Text = "fg";
             // 
             // houtaichuangti
             // 
@@ -1343,7 +1335,6 @@
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fggToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fgToolStripMenuItem;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Button button17;

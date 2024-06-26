@@ -49,6 +49,10 @@ D:\01桌面快捷键\学校文件存放\大二下学期\数据库应用编程\ne
 D:\01桌面快捷键\学校文件存放\大二下学期\数据库应用编程\newsystem\BoxSystemMange\BoxSystemMange\bin\Debug\AxInterop.WMPLib.dll
 D:\01桌面快捷键\学校文件存放\大二下学期\数据库应用编程\newsystem\BoxSystemMange\BoxSystemMange\obj\Debug\Interop.WMPLib.dll
 D:\01桌面快捷键\学校文件存放\大二下学期\数据库应用编程\newsystem\BoxSystemMange\BoxSystemMange\obj\Debug\AxInterop.WMPLib.dll
-D:\01桌面快捷键\学校文件存放\大二下学期\数据库应用编程\newsystem\BoxSystemMange\BoxSystemMange\obj\Debug\BoxSystemMange.SubCart.resources
 D:\01桌面快捷键\学校文件存放\大二下学期\数据库应用编程\newsystem\BoxSystemMange\BoxSystemMange\obj\Debug\BoxSystemMange.houtaicommunity.resources
 D:\01桌面快捷键\学校文件存放\大二下学期\数据库应用编程\newsystem\BoxSystemMange\BoxSystemMange\obj\Debug\BoxSystemMange.管理.houtaidingdan.resources
+D:\01桌面快捷键\学校文件存放\大二下学期\数据库应用编程\newsystem\BoxSystemMange\BoxSystemMange\obj\Debug\BoxSystemMange.mimazhaohui.resources
+D:\01桌面快捷键\学校文件存放\大二下学期\数据库应用编程\newsystem\BoxSystemMange\BoxSystemMange\obj\Debug\BoxSystemMange.pingxingchuangkou.resources
+D:\01桌面快捷键\学校文件存放\大二下学期\数据库应用编程\newsystem\BoxSystemMange\BoxSystemMange\obj\Debug\BoxSystemMange.xinxi.resources
+D:\01桌面快捷键\学校文件存放\大二下学期\数据库应用编程\newsystem\BoxSystemMange\BoxSystemMange\obj\Debug\BoxSystemMange.houtaixinxi.resources
+D:\01桌面快捷键\学校文件存放\大二下学期\数据库应用编程\newsystem\BoxSystemMange\BoxSystemMange\obj\Debug\BoxSystemMange.houtaixngxi2.resources

@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -65,12 +66,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel8.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -80,7 +81,6 @@
             this.panel12.SuspendLayout();
             this.panel14.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,7 +108,7 @@
             this.panel7.AutoScroll = true;
             this.panel7.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel7.Controls.Add(this.flowLayoutPanel1);
-            this.panel7.Location = new System.Drawing.Point(3, 9);
+            this.panel7.Location = new System.Drawing.Point(3, 3);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(916, 338);
             this.panel7.TabIndex = 1;
@@ -117,10 +117,19 @@
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.flowLayoutPanel1.Controls.Add(this.pictureBox1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(25, 9);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1520, 298);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(376, 295);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Resize += new System.EventHandler(this.pictureBox1_Resize);
             // 
             // panel2
             // 
@@ -129,7 +138,7 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(953, 6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(237, 1061);
+            this.panel2.Size = new System.Drawing.Size(237, 579);
             this.panel2.TabIndex = 6;
             // 
             // panel8
@@ -138,7 +147,7 @@
             this.panel8.Controls.Add(this.flowLayoutPanel2);
             this.panel8.Location = new System.Drawing.Point(11, 65);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(248, 752);
+            this.panel8.Size = new System.Drawing.Size(248, 601);
             this.panel8.TabIndex = 6;
             // 
             // flowLayoutPanel2
@@ -423,9 +432,9 @@
             this.panel14.AutoScroll = true;
             this.panel14.Controls.Add(this.panel2);
             this.panel14.Controls.Add(this.flowLayoutPanel3);
-            this.panel14.Location = new System.Drawing.Point(-1, 0);
+            this.panel14.Location = new System.Drawing.Point(8, 2);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(1205, 825);
+            this.panel14.Size = new System.Drawing.Size(1205, 789);
             this.panel14.TabIndex = 12;
             // 
             // flowLayoutPanel3
@@ -437,27 +446,10 @@
             this.flowLayoutPanel3.Controls.Add(this.panel4);
             this.flowLayoutPanel3.Controls.Add(this.panel5);
             this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel5);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 6);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(4, 10);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(944, 1076);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(944, 772);
             this.flowLayoutPanel3.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(376, 295);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Resize += new System.EventHandler(this.pictureBox1_Resize);
-            // 
-            // flowLayoutPanel4
-            // 
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(938, 393);
-            this.flowLayoutPanel4.TabIndex = 11;
-            this.flowLayoutPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel4_Paint);
             // 
             // flowLayoutPanel5
             // 
@@ -467,11 +459,19 @@
             this.flowLayoutPanel5.Size = new System.Drawing.Size(941, 399);
             this.flowLayoutPanel5.TabIndex = 12;
             // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(938, 393);
+            this.flowLayoutPanel4.TabIndex = 11;
+            this.flowLayoutPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel4_Paint);
+            // 
             // Tproducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1254, 798);
+            this.ClientSize = new System.Drawing.Size(1225, 767);
             this.Controls.Add(this.panel14);
             this.Name = "Tproducts";
             this.Text = "Tproducts";
@@ -482,6 +482,7 @@
             this.panel1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel8.ResumeLayout(false);
@@ -496,7 +497,6 @@
             this.panel12.PerformLayout();
             this.panel14.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
 

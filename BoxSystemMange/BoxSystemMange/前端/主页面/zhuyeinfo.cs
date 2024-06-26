@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace BoxSystemMange.前端.主页面
 {
     public partial class zhuyeinfo : Form
@@ -32,8 +33,8 @@ namespace BoxSystemMange.前端.主页面
             Bind();
         }
 
-
-
+        public string imagePath;
+        public string jiage;
         public int Stock_Quantity;
         void Bind()
         {
@@ -67,7 +68,7 @@ namespace BoxSystemMange.前端.主页面
                 label9.ForeColor = Color.Red;
                 label9.BackColor = Color.Transparent;
 
-
+                jiage = row["Price"].ToString().Remove(row["Price"].ToString().Length - 2, 2);
                 label13.Text = "￥" + row["Price"].ToString().Remove(row["Price"].ToString().Length - 2, 2);
 
                 Stock_Quantity = Convert.ToInt32( row["Stock_Quantity"]);
@@ -93,7 +94,7 @@ namespace BoxSystemMange.前端.主页面
                 textBox6.Text = "1";  // 假设初始购买数量为 1
 
                 // 显示商品图片
-                string imagePath = productRow["image"].ToString();
+                imagePath = productRow["image"].ToString();
                 if (!string.IsNullOrEmpty(imagePath))
                 {
                     pictureBox1.ImageLocation = Application.StartupPath + imagePath;
@@ -102,7 +103,7 @@ namespace BoxSystemMange.前端.主页面
             }
 
         }
-
+      
         void init()
         {
 
@@ -122,7 +123,7 @@ namespace BoxSystemMange.前端.主页面
         public string qty;
         private void button2_Click(object sender, EventArgs e)
         {
-
+            
             if (Convert.ToInt32(textBox6.Text) >= Convert.ToInt32(label11.Text))
             {
                 return;
@@ -130,7 +131,7 @@ namespace BoxSystemMange.前端.主页面
 
             qty = (Convert.ToInt32( textBox6.Text)+1).ToString();
             textBox6 .Text = qty;
-
+          
             DB.GetCn();
             // 使用DB类中的GetDataSet方法来获取数据
             string sql = "SELECT * FROM Product_Table WHERE Goods_ID = '" + zhuye.selectedGoodsID + "'";
@@ -209,15 +210,32 @@ namespace BoxSystemMange.前端.主页面
             }
         }
 
+
+
         private void button4_Click(object sender, EventArgs e)
         {
+           
             DB.GetCn();
-            string str = "insert into Order_Table values('" + Login.StrValue + "','" + DateTime.Today + "','" + textBox3.Text  + "','"
-                + comboBox1.Text + "','" + textBox1.Text + "','" + textBox2.Text + "','" + textBox4.Text + "','"
-                + textBox6.Text + "','待发货', null,null,NULL)";// ShopCart.profit +
-            //UpdateStockQuantity();
-            //ShopCart.profit = 0;
+            int quantity;
+            decimal price; 
+            // 构建插入订单的 SQL 语句
+            string str = $"INSERT INTO Order_Table VALUES ('{Login.StrValue}', '{DateTime.Now}', '{textBox3.Text}', " +
+                         $"'{comboBox1.Text}', '{textBox1.Text}', '{textBox2.Text}', '{textBox4.Text}', " +
+                         $"'{Convert.ToInt32(label11.Text)}', '待发货', null, '{imagePath}', '{jiage}', '{label8.Text}', '{Convert.ToInt32( zhuye.selectedGoodsID)}',null)";
+
+            MessageBox.Show(imagePath.ToString());
+            MessageBox.Show(zhuye.selectedGoodsID.ToString());
+            // 执行 SQL 插入操作
             DB.sqlEx(str);
+
+
+
+            //string str = "insert into Order_Table values('" + Login.StrValue + "','" + DateTime.Today + "','" + textBox3.Text + "','"
+            //    + comboBox1.Text + "','" + textBox1.Text + "','" + textBox2.Text + "','" + textBox4.Text + "','"
+            //    + textBox6.Text + "','待发货', null,null,NULL)";// ShopCart.profit +
+            //                                                 //UpdateStockQuantity();
+                                                             //ShopCart.profit = 0;
+
             MessageBox.Show("已经结算咯");
 
         }

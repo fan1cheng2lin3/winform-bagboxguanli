@@ -32,9 +32,58 @@ namespace BoxSystemMange
         public delegate void HidePanel();
         public HidePanel HidePanebbb; // 声明一个委托变量
 
-        public Login()
+
+
+        zhuye form1;
+        public Login(zhuye form1)
         {
             InitializeComponent();
+
+            this.form1 = form1;
+
+            // 订阅Form1的事件
+            this.form1.UpdatePictureBoxEvent += Form1_UpdatePictureBoxEvent;
+            
+        }
+
+        private void Form1_UpdatePictureBoxEvent(Image image, string labelText)
+        {
+            // 这里使用Form1的pictureBox1控件
+
+
+            if(Login.iflogin ==  true)
+            {
+                form1.pictureBox1.Image = image;
+                form1.label3.Text = labelText;
+            }
+            else
+            {
+                form1.pictureBox1.Image = Image.FromFile(@"C:\Users\Administrator\Pictures\头像.jpg");
+                form1.label3.Text = "请登录";
+            }
+
+
+            
+
+           
+        }
+        public static string bbb;
+
+        public void inittouxiang()
+        {
+            DB.GetCn();
+
+            string query = "SELECT Customerld FROM customer_Table WHERE Name = '" + StrValue + "'";
+
+            DataTable result = DB.GetDataSet(query);
+            if (result.Rows.Count > 0)
+            {
+                string a = result.Rows[0]["Customerld"].ToString();
+                bbb = a;
+
+            }
+
+            DB.cn.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -70,6 +119,8 @@ namespace BoxSystemMange
                         CustomerId = Convert.ToInt32(dt.Rows[0]["Customerld"]);
                         HidePanebbb?.Invoke();
                         iflogin = true;
+                        genxin();
+                        bbb = GetNumberFromLoginTable().Trim();
                         this.Close();
 
                         
@@ -139,9 +190,10 @@ namespace BoxSystemMange
                         HidePanebbb?.Invoke();
                         Dflag = false;
                         Bflag = true;
-
+                        genxin();
                         iflogin = true;
                         this.Close();
+
                     }
                     else
                     {
@@ -168,9 +220,51 @@ namespace BoxSystemMange
             HidePanelHandler?.Invoke();
             
         }
+        private string GetNumberFromLoginTable()
+        {
+            DB.GetCn();
+            string query = "SELECT Customerld FROM customer_Table WHERE Name = '" + txtName.Text + "'";
+            DataTable result = DB.GetDataSet(query);
+            if (result.Rows.Count > 0)
+            {
+                return result.Rows[0]["Customerld"].ToString();
+            }
+            DB.cn.Close();
+            return string.Empty;
+        }
 
 
 
+        public void genxin()
+        {
+            Image image = null;
+            try
+            {
+                // 尝试使用 InitData 函数获取头像路径
+                image = Image.FromFile(InitData("touxiang"));
+            }
+            catch (ArgumentException)
+            {
+                // 如果发生 ArgumentException 异常，使用默认头像路径
+                image = Image.FromFile(@"C:\Users\Administrator\Pictures\头像.jpg");
+            }
+            form1.OnUpdatePictureBox(image, InitData("Name"));
+        }
+
+        public string InitData(string columnName)
+        {
+            DB.GetCn();
+            string query = "SELECT " + columnName + " FROM customer_Table WHERE Name = '" + StrValue + "'";
+            DataTable result = DB.GetDataSet(query);
+            string re = "";
+            if (result.Rows.Count > 0)
+            {
+                re = result.Rows[0][columnName].ToString().Trim();
+            }
+            DB.cn.Close();
+
+            return re;
+        }
         private void label5_Click(object sender, EventArgs e)
         {
             

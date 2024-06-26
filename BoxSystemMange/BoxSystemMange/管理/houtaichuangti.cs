@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.Xml.Linq;
-
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace BoxSystemMange
@@ -121,6 +120,8 @@ namespace BoxSystemMange
 
         }
 
+
+        public bool dakail = false;
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -132,6 +133,7 @@ namespace BoxSystemMange
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
             {
+                dakail = true;
                 path_source = ofd.FileName;
                 pictureBox1.Image = Image.FromFile(path_source);
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -254,18 +256,14 @@ namespace BoxSystemMange
                     ProRows[0]["Goods_Name"] = textBox4.Text.Trim();
 
 
-                    //if (path_source != "")
-                    //{
-                    //    ProRows[0]["image"] = "Prod_Images\\" + filename;
-                    //    File.Copy(path_source, fileFolder, true);
-                    //}
-                    CopyImageAndSetDataRow(path_source, uniqueFolder, ProRows[0], "image", "780.jpg");
-                    CopyImageAndSetDataRow(path_sourcegai1, uniqueFolder, ProRows[0], "ye1", "NULL");
-                    CopyImageAndSetDataRow(path_sourcegai2, uniqueFolder, ProRows[0], "ye2", "NULL");
-                    CopyImageAndSetDataRow(path_sourcegai3, uniqueFolder, ProRows[0], "ye3", "NULL");
-                    CopyImageAndSetDataRow(path_sourcegai4, uniqueFolder, ProRows[0] , "ye4", "NULL");
-                    CopyImageAndSetDataRow(path_sourcegai5, uniqueFolder, ProRows[0], "ye5", "NULL");
-                    CopyImageAndSetDataRow(path_sourcegai6, uniqueFolder, ProRows[0], "ye6", "NULL");
+                  
+                    CopyImageAndSetDataRow(path_source, uniqueFolder, ProRows[0], "image", imm);
+                    CopyImageAndSetDataRow(path_sourcegai1, uniqueFolder, ProRows[0], "ye1",yee1);
+                    CopyImageAndSetDataRow(path_sourcegai2, uniqueFolder, ProRows[0], "ye2", yee2);
+                    CopyImageAndSetDataRow(path_sourcegai3, uniqueFolder, ProRows[0], "ye3", yee3);
+                    CopyImageAndSetDataRow(path_sourcegai4, uniqueFolder, ProRows[0] , "ye4", yee4);
+                    CopyImageAndSetDataRow(path_sourcegai5, uniqueFolder, ProRows[0], "ye5", yee5);
+                    CopyImageAndSetDataRow(path_sourcegai6, uniqueFolder, ProRows[0], "ye6", yee6);
 
 
                     if (c == "促销推荐")
@@ -341,6 +339,11 @@ namespace BoxSystemMange
                     DB.cn.Close();
                 }
             }
+
+
+
+            showAll();
+
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -366,12 +369,29 @@ namespace BoxSystemMange
             return null;
         }
 
+        private PictureBox GetPictureBoxAtLocation2(Point location)
+        {
+            foreach (Control control in flowLayoutPanel3.Controls)
+            {
+                // 检查控件是否是PictureBox
+                if (control is PictureBox pictureBox)
+                {
+                    // 检查点击位置是否在PictureBox内
+                    if (pictureBox.ClientRectangle.Contains(location))
+                    {
+                        return pictureBox;
+                    }
+                }
+            }
+            return null;
+        }
 
 
         private void fggToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // 使用存储的点击位置来确定哪个PictureBox被点击
             PictureBox clickedPictureBox = GetPictureBoxAtLocation(clickLocation);
+            PictureBox clickedPictureBox2 = GetPictureBoxAtLocation2(clickLocation);
 
             if (clickedPictureBox != null)
             {
@@ -383,12 +403,18 @@ namespace BoxSystemMange
                         flowLayoutPanel2.Controls.RemoveAt(i);
                     }
                 }
-                // 删除图片
-                //clickedPictureBox.Image = null;
+            }
 
-                //// 从容器中移除PictureBox
-                //flowLayoutPanel2.Controls.Remove(clickedPictureBox);
-
+            if (clickedPictureBox2 != null)
+            {
+                for (int i = flowLayoutPanel3.Controls.Count - 1; i >= 0; i--)
+                {
+                    // 如果控件是PictureBox类型，则移除它
+                    if (flowLayoutPanel3.Controls[i] is PictureBox)
+                    {
+                        flowLayoutPanel3.Controls.RemoveAt(i);
+                    }
+                }
             }
         }
 
@@ -482,6 +508,8 @@ namespace BoxSystemMange
                         drPro["decs"] = textBox7.Text;
                         drPro["Stock_Quantity"] = textBox8.Text;
                         drPro["leixing"] = 4;
+                        drPro["haopinglv"] = 0;
+                        drPro["xiaoliang"] = 0;
 
                         // 遍历flowLayoutPanel3中的PictureBox，并将Tag中的路径赋给im1, im2, im3, im4, im5字段
                         int imageIndex = 1;
@@ -515,6 +543,8 @@ namespace BoxSystemMange
 
 
                         CopyImageAndSetDataRow(path_source2, uniqueFolder, drPro, "image", "780.jpg");
+
+
                         CopyImageAndSetDataRow(path_sourceye1, uniqueFolder, drPro, "ye1", "NULL");
                         CopyImageAndSetDataRow(path_sourceye2, uniqueFolder, drPro, "ye2", "NULL");
                         CopyImageAndSetDataRow(path_sourceye3, uniqueFolder, drPro, "ye3", "NULL");
@@ -583,11 +613,13 @@ namespace BoxSystemMange
 
                     DataRow drPro = ds.Tables["product_info"].NewRow();
                     drPro["Goods_ID"] = int.Parse(dataRow["Goods_ID"].ToString());
+                    drPro["Stock_Quantity"] = int.Parse(dataRow["Stock_Quantity"].ToString());
                     drPro["Classification_ID"] = dataRow["Classification_ID"];
                     drPro["Unit_Price"] = decimal.Parse(dataRow["Unit_Price"].ToString());
                     drPro["Price"] = decimal.Parse(dataRow["Price"].ToString());
                     drPro["Supplier_ID"] = dataRow["Supplier_ID"];
                     drPro["Goods_Name"] = dataRow["Goods_Name"].ToString();
+                    drPro["decs"] = dataRow["decs"].ToString();
                     drPro["image"] = dataRow["image"].ToString();
                     drPro["im1"] = dataRow["im1"].ToString();
                     drPro["im2"] = dataRow["im2"].ToString();
@@ -601,6 +633,8 @@ namespace BoxSystemMange
                     drPro["ye5"] = dataRow["ye5"].ToString();
                     drPro["ye6"] = dataRow["ye6"].ToString();
                     drPro["leixing"] = 4;
+                    drPro["haopinglv"] = 0;
+                    drPro["xiaoliang"] = 0;
 
                     ds.Tables["product_info"].Rows.Add(drPro);
 
@@ -631,6 +665,7 @@ namespace BoxSystemMange
                 DB.cn.Close();
             }
 
+            showAll();
         }
 
 
@@ -1154,6 +1189,9 @@ namespace BoxSystemMange
             }
         }
 
+        public string imm, yee1, yee2, yee3, yee4, yee5, yee6;
+
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -1207,8 +1245,6 @@ namespace BoxSystemMange
                     ctrl.SendToBack();
                 }
             }
-
-
 
             button23.BackColor = Color.White;
             button24.BackColor = Color.White;
@@ -1274,12 +1310,15 @@ namespace BoxSystemMange
             }
 
 
+
+
             // 设置主图片
             try
             {
+
+                imm =dgvPriduct.CurrentRow.Cells["image"].Value.ToString();
                 pictureBox1.Image = Image.FromFile(Application.StartupPath+ dgvPriduct.CurrentRow.Cells["image"].Value.ToString());
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-
             }
             catch
             {
@@ -1290,6 +1329,8 @@ namespace BoxSystemMange
 
             try
             {
+
+                yee1 = dgvPriduct.CurrentRow.Cells["ye1"].Value.ToString();
                 pictureBox9.Image = Image.FromFile(Application.StartupPath + dgvPriduct.CurrentRow.Cells["ye1"].Value.ToString());
                 pictureBox9.SizeMode = PictureBoxSizeMode.StretchImage;
             }
@@ -1302,7 +1343,8 @@ namespace BoxSystemMange
 
             try
             {
-                pictureBox10.Image = Image.FromFile(Application.StartupPath + dgvPriduct.CurrentRow.Cells["ye2"].Value.ToString());
+                yee2= dgvPriduct.CurrentRow.Cells["ye2"].Value.ToString();
+                pictureBox10.Image = Image.FromFile(Application.StartupPath + yee2);
                 pictureBox10.SizeMode = PictureBoxSizeMode.StretchImage;
             }
             catch
@@ -1314,7 +1356,8 @@ namespace BoxSystemMange
 
             try
             {
-                pictureBox11.Image = Image.FromFile(Application.StartupPath + dgvPriduct.CurrentRow.Cells["ye3"].Value.ToString());
+                yee3 =  dgvPriduct.CurrentRow.Cells["ye3"].Value.ToString();
+                pictureBox11.Image = Image.FromFile(Application.StartupPath + yee3);
                 pictureBox11.SizeMode = PictureBoxSizeMode.StretchImage;
             }
             catch
@@ -1323,11 +1366,11 @@ namespace BoxSystemMange
                 pictureBox11.Image = Image.FromFile(Application.StartupPath + "\\" + "780.jpg");
             }
 
-
             try
             {
+                yee4 = dgvPriduct.CurrentRow.Cells["ye4"].Value.ToString();
 
-                pictureBox12.Image = Image.FromFile(Application.StartupPath + dgvPriduct.CurrentRow.Cells["ye4"].Value.ToString());
+                pictureBox12.Image = Image.FromFile(Application.StartupPath + yee4);
                 pictureBox12.SizeMode = PictureBoxSizeMode.StretchImage;
             }
             catch
@@ -1336,11 +1379,10 @@ namespace BoxSystemMange
                 pictureBox12.Image = Image.FromFile(Application.StartupPath + "\\" + "780.jpg");
             }
 
-
             try
             {
-
-                pictureBox13.Image = Image.FromFile(Application.StartupPath + dgvPriduct.CurrentRow.Cells["ye5"].Value.ToString());
+                yee5 =  dgvPriduct.CurrentRow.Cells["ye5"].Value.ToString();
+                pictureBox13.Image = Image.FromFile(Application.StartupPath + yee5);
                 pictureBox13.SizeMode = PictureBoxSizeMode.StretchImage;
 
             }
@@ -1353,8 +1395,8 @@ namespace BoxSystemMange
 
             try
             {
-
-                pictureBox14.Image = Image.FromFile(Application.StartupPath + dgvPriduct.CurrentRow.Cells["ye6"].Value.ToString());
+                yee6 =dgvPriduct.CurrentRow.Cells["ye6"].Value.ToString();
+                pictureBox14.Image = Image.FromFile(Application.StartupPath + yee6);
                 pictureBox14.SizeMode = PictureBoxSizeMode.StretchImage;
 
             }
@@ -1363,11 +1405,6 @@ namespace BoxSystemMange
                 pictureBox14.Image = Image.FromFile(Application.StartupPath + "\\" + "780.jpg");
                 pictureBox14.SizeMode = PictureBoxSizeMode.StretchImage;
             }
-
-
-
-
-
 
             if (string.IsNullOrEmpty(textBox1.Text))
             {
@@ -1383,9 +1420,7 @@ namespace BoxSystemMange
         }
 
 
-
-
-
+        
 
     }
 }
